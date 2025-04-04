@@ -1,4 +1,3 @@
-import Image from "next/image";
 import HeroSection from "@/components/hero-section";
 import InvestorServices from "@/components/investor-services";
 
