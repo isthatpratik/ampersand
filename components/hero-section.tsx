@@ -3,7 +3,7 @@ import styles from '@/styles/hero-button.module.sass'
 
 const HeroSection = () => {
   return (
-    <section className='min-h-[calc(70vh-120px)] flex flex-col space-y-10 items-center justify-center'>
+    <section className='min-h-[calc(100vh-120px)] flex flex-col space-y-10 items-center justify-center'>
         <div className='flex flex-col gap-6 items-center justify-center'>
             <h1 className='text-7xl font-semibold max-w-5xl py-6 text-center tracking-tight drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)]'>
             Where vision meets valuation, and ambition finds its exit
