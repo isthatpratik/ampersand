@@ -23,3 +23,44 @@
         -webkit-mask-composite: xor
         mask-composite: exclude
         pointer-events: none
+
+.neuralPathsHeader
+    background: transparent
+    border-radius: 4px
+    padding: 8px 16px
+    position: relative
+    border: 1.5px solid #F8F8F829
+    &:before
+        content: ''
+        position: absolute
+        inset: 0
+        border-radius: 4px
+        padding: 1px
+        background: linear-gradient(145deg, #FFFFFF00, #FFFFFF4D, #FFFFFF00)
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+        -webkit-mask-composite: xor
+        mask-composite: exclude
+        pointer-events: none
+
+.visitButton
+    background: #51515136
+    backdrop-filter: blur(50px)
+    padding: 16px 32px
+    border-radius: 20px
+    color: white
+    font-size: 18px
+    position: relative
+    cursor: pointer
+    border: none
+    box-shadow: 2px 4px 16px 0 rgba(248, 248, 248, 0.06), 0 4px 10px 0 rgba(0, 0, 0, 0.25)
+    &:before
+        content: ''
+        position: absolute
+        inset: 0
+        border-radius: 20px
+        padding: 1.5px
+        background: linear-gradient(175deg, #FFFFFF66, #FFFFFF00, #FFFFFF00, #FFFFFF1A)
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+        -webkit-mask-composite: xor
+        mask-composite: exclude
+        pointer-events: none

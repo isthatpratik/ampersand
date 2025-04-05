@@ -87,17 +87,63 @@ const cardData = [
 const InvestorServices = () => {
   const [expandedCard, setExpandedCard] = useState(1)
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const cardContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
-    <section className='py-15 mx-auto flex flex-col gap-6'>
+    <motion.section 
+      className='py-15 mx-auto flex flex-col gap-6 min-h-[calc(100vh-192px)]'
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.8 }}
+      variants={sectionVariants}
+    >
       <div className='flex flex-col gap-6 items-center justify-center'>
-        <h3 className='text-5xl font-semibold max-w-6xl mx-auto text-center'>
+        <h3 className='text-5xl font-semibold max-w-6xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent'>
           Smart capital moves for investors who think ahead
         </h3>
         <p className='text-md text-center max-w-4xl mx-auto'>
           Maximize your returns with seamless exits and strategic liquidity solutions. We help investors unlock capital efficiently and optimize portfolio transitions. Stay ahead with precision-driven strategies designed for sustainable growth.
         </p>
       </div>
-      <div className={styles.cardsContainer}>
+      <motion.div 
+        className={styles.cardsContainer}
+        variants={cardContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.6 }}
+      >
         <AnimatePresence>
           {cardData.map((card) => (
             <motion.div
@@ -107,6 +153,7 @@ const InvestorServices = () => {
                 [styles.collapsed]: expandedCard !== card.id
               })}
               onClick={() => setExpandedCard(card.id)}
+              variants={cardVariants}
               layout
               transition={{
                 layout: { duration: 0.6, type: "spring" }
@@ -147,8 +194,8 @@ const InvestorServices = () => {
             </motion.div>
           ))}
         </AnimatePresence>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }
 

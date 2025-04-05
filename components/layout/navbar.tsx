@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "@/styles/navbar.module.sass";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -14,19 +14,30 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-    <div className="max-w-screen-2xl px-20 py-15 mx-auto flex items-center justify-between">
-      <div className="flex">
+  const menuItems = [
+    { icon: "/icons/home.svg", label: "Home" },
+    { icon: "/icons/about.svg", label: "About Us" },
+    { icon: "/icons/contact.svg", label: "Contact Us" },
+    { icon: "/icons/careers.svg", label: "Careers" }
+  ];
 
-      <Link href="/">
-        <Image
-          src={"/icons/header-logo.svg"}
-          alt="Ampersand Logo"
-          width={100}
-          height={100}
-          className="w-16 h-auto"
-        />
-      </Link>
+  return (
+    <motion.div 
+      className="max-w-screen-2xl px-20 py-15 mx-auto flex items-center justify-between"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="flex">
+        <Link href="/">
+          <Image
+            src={"/icons/header-logo.svg"}
+            alt="Ampersand Logo"
+            width={100}
+            height={100}
+            className="w-16 h-auto"
+          />
+        </Link>
       </div>
       <div>
         <button
@@ -42,85 +53,40 @@ const Navbar = () => {
           </div>
         </button>
 
-        <AnimatePresence>
-          {isOpen && (
-            <>
-              <motion.div
-                className={styles.overlay}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={toggleMenu}
-              />
-              <motion.div
-                className={styles.dialog}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className={styles.menuItems}>
-                  <div className="grid grid-cols-4 justify-between gap-4">
+        {isOpen && (
+          <>
+            <div
+              className={styles.overlay}
+              onClick={toggleMenu}
+            />
+            <div className={styles.dialog}>
+              <div className={styles.menuItems}>
+                <div className="grid grid-cols-4 justify-between gap-4">
+                  {menuItems.map((item) => (
                     <a
+                      key={item.label}
                       href="#"
                       className="flex flex-col rounded-[10px] items-center px-20 py-8 text-white hover:bg-[#000000]/40"
                     >
-                      <Image
-                        src="/icons/home.svg"
-                        alt="Home Icon"
-                        width={100}
-                        height={100}
-                        className="lg:w-18 h-auto mb-1"
-                      />
-                      <span>Home</span>
+                      <div>
+                        <Image
+                          src={item.icon}
+                          alt={`${item.label} Icon`}
+                          width={100}
+                          height={100}
+                          className="lg:w-18 h-auto mb-1"
+                        />
+                      </div>
+                      <span>{item.label}</span>
                     </a>
-                    <a
-                      href="#"
-                      className="flex flex-col rounded-[10px] items-center px-20 py-8 text-white hover:bg-[#000000]/40"
-                    >
-                      <Image
-                        src="/icons/about.svg"
-                        alt="Menu Item 2 Icon"
-                        width={100}
-                        height={100}
-                        className="lg:w-18 h-auto mb-1"
-                      />
-                      <span>About Us</span>
-                    </a>
-                    <a
-                      href="#"
-                      className="flex flex-col rounded-[10px] items-center px-20 py-8 text-white hover:bg-[#000000]/40"
-                    >
-                      <Image
-                        src="/icons/contact.svg"
-                        alt="Menu Item 3 Icon"
-                        width={100}
-                        height={100}
-                        className="lg:w-18 h-auto mb-1"
-                      />
-                      <span>Contact Us</span>
-                    </a>
-                    <a
-                      href="#"
-                      className="flex flex-col rounded-[10px] items-center px-20 py-8 text-white hover:bg-[#000000]/40"
-                    >
-                      <Image
-                        src="/icons/careers.svg"
-                        alt="Menu Item 4 Icon"
-                        width={100}
-                        height={100}
-                        className="lg:w-18 h-auto mb-1"
-                      />
-                      <span>Careers</span>
-                    </a>
-                  </div>
+                  ))}
                 </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

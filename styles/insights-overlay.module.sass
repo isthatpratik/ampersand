@@ -1,0 +1,21 @@
+.overlay
+    position: relative
+    &:before
+        content: ''
+        position: absolute
+        inset: 0
+        border-radius: 32px
+        padding: 1.5px
+        background: linear-gradient(120deg, #FFFFFF8C, #FFFFFF00, #FFFFFF00, #9747FF, #35EDFB)
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+        -webkit-mask-composite: xor
+        mask-composite: exclude
+        pointer-events: none
+        opacity: 88%
+        z-index: 10
+    &:after
+        content: ''
+        position: absolute
+        inset: 0
+        border-radius: 32px
+        box-shadow: inset 2px 4px 16px 0 #F8F8F80F 
