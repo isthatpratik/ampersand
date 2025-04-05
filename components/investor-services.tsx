@@ -114,9 +114,6 @@ const InvestorServices = () => {
             >
               <motion.div className={styles.cardContent} layout>
                 <motion.div className={styles.cardHeader} layout>
-                  <motion.div layout="position" className={styles.cardNumber}>
-                    {card.id}
-                  </motion.div>
                   <motion.div layout="position" className={styles.cardIcon}>
                     <Image
                       src={card.icon}
@@ -140,10 +137,8 @@ const InvestorServices = () => {
                   <div className={styles.listContainer}>
                     {card.content.map((item, index) => (
                       <div key={index} className={styles.listItem}>
-                        <div>
-                          <div className={styles.listItemTitle}>{item.title}<div className={styles.listItemDescription}>{item.description}</div></div>
-                          
-                        </div>
+                        {item.title}
+                        <span>{item.description}</span>
                       </div>
                     ))}
                   </div>
