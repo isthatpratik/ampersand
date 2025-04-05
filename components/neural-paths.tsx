@@ -208,7 +208,7 @@ const NeuralPaths = () => {
           className="text-5xl font-semibold text-white text-center"
           variants={fadeInUp}
         >
-          Neural Paths' - Micro SaaS Suite
+          Neural Paths&apos; - Micro SaaS Suite
         </motion.h2>
         
         {/* Products Grid */}

@@ -15,10 +15,10 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { icon: "/icons/home.svg", label: "Home" },
-    { icon: "/icons/about.svg", label: "About Us" },
-    { icon: "/icons/contact.svg", label: "Contact Us" },
-    { icon: "/icons/careers.svg", label: "Careers" }
+    { icon: "/icons/home.svg", label: "Home", href: "/" },
+    { icon: "/icons/about.svg", label: "About Us", href: "/about" },
+    { icon: "/icons/contact.svg", label: "Contact Us", href: "/contact" },
+    { icon: "/icons/careers.svg", label: "Careers", href: "/careers" }
   ];
 
   return (
@@ -63,10 +63,11 @@ const Navbar = () => {
               <div className={styles.menuItems}>
                 <div className="grid grid-cols-4 justify-between gap-4">
                   {menuItems.map((item) => (
-                    <a
+                    <Link
                       key={item.label}
-                      href="#"
+                      href={item.href}
                       className="flex flex-col rounded-[10px] items-center px-20 py-8 text-white hover:bg-[#000000]/40"
+                      onClick={toggleMenu}
                     >
                       <div>
                         <Image
@@ -78,7 +79,7 @@ const Navbar = () => {
                         />
                       </div>
                       <span>{item.label}</span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
