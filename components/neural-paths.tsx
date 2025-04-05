@@ -153,13 +153,24 @@ const NeuralPaths = () => {
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <Image
-            src="/images/neural-paths.png"
-            alt="Neural Paths"
-            width={400}
-            height={400}
-            className="w-full h-full object-contain drop-shadow-[0_0_48px_rgba(255,255,255,0.2)]"
-          />
+          <div className="flex flex-col items-center gap-4">
+            <Image
+              src="/images/neural-paths.png"
+              alt="Neural Paths"
+              width={400}
+              height={400}
+              className="w-full h-full object-contain drop-shadow-[0_0_48px_rgba(255,255,255,0.2)] p-12 -mt-16"
+            />
+            <motion.p 
+              className="tracking-[0.2em] text-base -mt-22 text-[#F8F8F8]"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              NEURAL PATHS
+            </motion.p>
+          </div>
         </motion.div>
 
         {/* Right Text */}
