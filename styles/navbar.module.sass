@@ -14,6 +14,9 @@
     position: relative
     backdrop-filter: blur(30px)
     box-shadow: 0 15px 16px rgba(0, 0, 0, 0.1)
+    @media (max-width: 768px)
+        width: 32px
+        height: 32px
     &:hover
         opacity: 0.8
 
@@ -29,11 +32,18 @@
     transition: all 0.3s ease
     position: relative
     filter: drop-shadow(0 15px 16px rgba(0, 0, 0, 0.1))
+    @media (max-width: 768px)
+        width: 32px
+        height: 32px
+        border-radius: 4px
     &:before
         content: ''
         position: absolute
         inset: 0
         border-radius: 16px
+        @media (max-width: 768px)
+            border-radius: 4px
+            padding: 1px
         padding: 1.5px
         background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1))
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
@@ -51,6 +61,10 @@
     justify-content: center
     gap: 6px
     transition: all 0.3s ease
+    @media (max-width: 768px)
+        width: 16px
+        height: 16px
+        gap: 2px
 
 .menuLine
     width: 24px
@@ -59,6 +73,9 @@
     border-radius: 2px
     transition: all 0.3s ease
     transform-origin: center
+    @media (max-width: 768px)
+        width: 8px
+        height: 0.5px
     &:first-child
         &.open
             transform: translateY(4px) rotate(45deg)
@@ -98,10 +115,11 @@
         inset: 0
         border-radius: 12px
         padding: 1px
-        background: linear-gradient(to top right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1))
+        background: linear-gradient(135deg, #FFFFFF9E 0%, #FFFFFF00 45%, #FFFFFF00 75%, #FFFFFF38 100%)
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
-        -webkit-mask-composite: xor
-        mask-composite: exclude
+        & 
+            -webkit-mask-composite: xor
+            mask-composite: exclude
         pointer-events: none
     @media (min-width: 1440px)
         right: calc((100vw - 1440px) / 2 + 28px)

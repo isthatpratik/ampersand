@@ -40,16 +40,71 @@ const Contact = () => {
   const [currentStep, setCurrentStep] = useState(1)
   const [countryCodes, setCountryCodes] = useState<CountryCode[]>([])
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false)
+  const [isIndustryDropdownOpen, setIsIndustryDropdownOpen] = useState(false)
+  const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false)
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const [isReferralDropdownOpen, setIsReferralDropdownOpen] = useState(false)
   const [selectedCountry, setSelectedCountry] = useState<CountryCode | null>(null)
+  const [selectedIndustry, setSelectedIndustry] = useState('')
+  const [selectedRole, setSelectedRole] = useState('')
+  const [selectedService, setSelectedService] = useState('')
+  const [selectedReferral, setSelectedReferral] = useState('')
+  
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const industryDropdownRef = useRef<HTMLDivElement>(null)
+  const roleDropdownRef = useRef<HTMLDivElement>(null)
+  const servicesDropdownRef = useRef<HTMLDivElement>(null)
+  const referralDropdownRef = useRef<HTMLDivElement>(null)
+
   const steps = ['Personal Details', 'Company Details', 'Service']
+
+  const industries = [
+    'Saas',
+    'Fintech',
+    'Healtech',
+    'Edtech',
+    'E-commerce',
+    'Artificial Intelligence',
+    'Consulting',
+    'Others'
+  ]
+
+  const roles = [
+    'CEO',
+    'Founder',
+    'Co-Founder',
+    'CMO (Chief Marketing Officer)',
+    'CFO (Chief Financial Officer)',
+    'CTO (Chief Technology Officer)',
+    'COO (Chief Operating Officer)',
+    'Startup Advisor',
+    'Venture Capitalist',
+    'Private Equity Investor',
+    'Institutional Investor',
+    'LP (Limited Partner)',
+    'Investment Analyst',
+    'Family Office Representative',
+    'Others'
+  ]
+
+  const services = [
+    'Exit Strategy',
+    'Board Representation',
+    'Secondary Buyout'
+  ]
+
+  const referralSources = [
+    'Google',
+    'LinkedIn',
+    'Medium',
+    'Other'
+  ]
 
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
-    trigger,
-    reset
+    trigger
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     mode: 'onBlur'
@@ -59,6 +114,18 @@ const Contact = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsCountryDropdownOpen(false)
+      }
+      if (industryDropdownRef.current && !industryDropdownRef.current.contains(event.target as Node)) {
+        setIsIndustryDropdownOpen(false)
+      }
+      if (roleDropdownRef.current && !roleDropdownRef.current.contains(event.target as Node)) {
+        setIsRoleDropdownOpen(false)
+      }
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target as Node)) {
+        setIsServicesDropdownOpen(false)
+      }
+      if (referralDropdownRef.current && !referralDropdownRef.current.contains(event.target as Node)) {
+        setIsReferralDropdownOpen(false)
       }
     }
 
@@ -98,14 +165,12 @@ const Contact = () => {
     const isValid = await trigger(fields as (keyof FormData)[])
     if (isValid && currentStep < 3) {
         setCurrentStep(currentStep + 1)
-        reset() // Reset form data when moving to next step
     }
   }
 
   const handleBack = () => {
     if (currentStep > 1) {
         setCurrentStep(currentStep - 1)
-        reset() // Reset form data when moving back
     }
   }
 
@@ -117,6 +182,26 @@ const Contact = () => {
   const handleCountrySelect = (country: CountryCode) => {
     setSelectedCountry(country)
     setIsCountryDropdownOpen(false)
+  }
+
+  const handleIndustrySelect = (industry: string) => {
+    setSelectedIndustry(industry)
+    setIsIndustryDropdownOpen(false)
+  }
+
+  const handleRoleSelect = (role: string) => {
+    setSelectedRole(role)
+    setIsRoleDropdownOpen(false)
+  }
+
+  const handleServiceSelect = (service: string) => {
+    setSelectedService(service)
+    setIsServicesDropdownOpen(false)
+  }
+
+  const handleReferralSelect = (source: string) => {
+    setSelectedReferral(source)
+    setIsReferralDropdownOpen(false)
   }
 
   const renderForm = () => {
@@ -171,7 +256,7 @@ const Contact = () => {
                       <div className={styles.countryCodeDropdownContent}>
                         {countryCodes.map((country) => (
                           <div
-                            key={country.code}
+                            key={`${country.code}-${country.name}`}
                             className={styles.countryCodeOption}
                             onClick={() => handleCountrySelect(country)}
                           >
@@ -220,17 +305,29 @@ const Contact = () => {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Industry</label>
-              <div className={styles.inputWrapper}>
-                <select 
+              <div className={styles.inputWrapper} ref={industryDropdownRef}>
+                <div 
                   className={`${styles.select} ${errors.step2?.industry ? styles.error : ''}`}
-                  {...register('step2.industry')}
+                  onClick={() => setIsIndustryDropdownOpen(!isIndustryDropdownOpen)}
                 >
-                  <option value="">Select Industry Type</option>
-                  <option value="tech">Technology</option>
-                  <option value="finance">Finance</option>
-                  <option value="healthcare">Healthcare</option>
-                  <option value="retail">Retail</option>
-                </select>
+                  {selectedIndustry || 'Select Industry Type'}
+                </div>
+                <input type="hidden" {...register('step2.industry')} value={selectedIndustry} />
+                {isIndustryDropdownOpen && (
+                  <div className={styles.countryCodeDropdown}>
+                    <div className={styles.countryCodeDropdownContent}>
+                      {industries.map((industry) => (
+                        <div
+                          key={industry}
+                          className={styles.countryCodeOption}
+                          onClick={() => handleIndustrySelect(industry)}
+                        >
+                          {industry}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {errors.step2?.industry && touchedFields.step2?.industry && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step2.industry)}
@@ -240,17 +337,29 @@ const Contact = () => {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Role</label>
-              <div className={styles.inputWrapper}>
-                <select 
+              <div className={styles.inputWrapper} ref={roleDropdownRef}>
+                <div 
                   className={`${styles.select} ${errors.step2?.role ? styles.error : ''}`}
-                  {...register('step2.role')}
+                  onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
                 >
-                  <option value="">Select your Role</option>
-                  <option value="ceo">CEO</option>
-                  <option value="cto">CTO</option>
-                  <option value="manager">Manager</option>
-                  <option value="developer">Developer</option>
-                </select>
+                  {selectedRole || 'Select your Role'}
+                </div>
+                <input type="hidden" {...register('step2.role')} value={selectedRole} />
+                {isRoleDropdownOpen && (
+                  <div className={styles.countryCodeDropdown}>
+                    <div className={styles.countryCodeDropdownContent}>
+                      {roles.map((role) => (
+                        <div
+                          key={role}
+                          className={styles.countryCodeOption}
+                          onClick={() => handleRoleSelect(role)}
+                        >
+                          {role}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {errors.step2?.role && touchedFields.step2?.role && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step2.role)}
@@ -265,16 +374,29 @@ const Contact = () => {
           <div className={styles.formContainer}>
             <div className={styles.formGroup}>
               <label className={styles.label}>What Services are you interested in?</label>
-              <div className={styles.inputWrapper}>
-                <select 
+              <div className={styles.inputWrapper} ref={servicesDropdownRef}>
+                <div 
                   className={`${styles.select} ${errors.step3?.services ? styles.error : ''}`}
-                  {...register('step3.services')}
+                  onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
                 >
-                  <option value="">Select Services</option>
-                  <option value="consulting">Consulting</option>
-                  <option value="development">Development</option>
-                  <option value="design">Design</option>
-                </select>
+                  {selectedService || 'Select Services'}
+                </div>
+                <input type="hidden" {...register('step3.services')} value={selectedService} />
+                {isServicesDropdownOpen && (
+                  <div className={styles.countryCodeDropdown}>
+                    <div className={styles.countryCodeDropdownContent}>
+                      {services.map((service) => (
+                        <div
+                          key={service}
+                          className={styles.countryCodeOption}
+                          onClick={() => handleServiceSelect(service)}
+                        >
+                          {service}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {errors.step3?.services && touchedFields.step3?.services && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step3.services)}
@@ -284,16 +406,29 @@ const Contact = () => {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>How did you hear about us?</label>
-              <div className={styles.inputWrapper}>
-                <select 
+              <div className={styles.inputWrapper} ref={referralDropdownRef}>
+                <div 
                   className={`${styles.select} ${errors.step3?.referralSource ? styles.error : ''}`}
-                  {...register('step3.referralSource')}
+                  onClick={() => setIsReferralDropdownOpen(!isReferralDropdownOpen)}
                 >
-                  <option value="">Select</option>
-                  <option value="search">Search Engine</option>
-                  <option value="social">Social Media</option>
-                  <option value="referral">Referral</option>
-                </select>
+                  {selectedReferral || 'Select'}
+                </div>
+                <input type="hidden" {...register('step3.referralSource')} value={selectedReferral} />
+                {isReferralDropdownOpen && (
+                  <div className={styles.countryCodeDropdown}>
+                    <div className={styles.countryCodeDropdownContent}>
+                      {referralSources.map((source) => (
+                        <div
+                          key={source}
+                          className={styles.countryCodeOption}
+                          onClick={() => handleReferralSelect(source)}
+                        >
+                          {source}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {errors.step3?.referralSource && touchedFields.step3?.referralSource && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step3.referralSource)}
@@ -324,14 +459,16 @@ const Contact = () => {
   }
 
   return (
-    <div className="min-h-screen w-full py-24 px-6">
+    <div className="min-h-screen w-full lg:py-24 py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
-        <h1 className="text-xl lg:text-6xl font-semibold text-white text-center mb-4 drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)]">
-          Get in Touch with Our Team for Assistance and Inquiries
-        </h1>
-        <p className="text-[#9B9B9B] text-xs lg:text-xl text-center max-w-4xl mb-16">
-          Have questions or need support? Our team is here to help with any inquiries, feedback, or assistance you may need. Reach out to us, and we&apos;ll get back to you as soon as possible.
-        </p>
+        <div className='flex flex-col items-center gap-6 mb-12'>
+          <h1 className="text-xl lg:text-6xl font-semibold text-white text-center mb-4 drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)]">
+            Get in Touch with Our Team for Assistance and Inquiries
+          </h1>
+          <p className="text-[#9B9B9B] text-xs lg:text-xl text-center max-w-4xl mb-16">
+            Have questions or need support? Our team is here to help with any inquiries, feedback, or assistance you may need. Reach out to us, and we&apos;ll get back to you as soon as possible.
+          </p>
+        </div>
 
         <div className={styles.stepperContainer}>
           <div 

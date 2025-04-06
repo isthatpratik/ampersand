@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <motion.div 
-      className="max-w-screen-2xl px-20 py-15 mx-auto flex items-center justify-between"
+      className="max-w-screen-2xl px-8 lg:px-20 py-8 lg:py-15 mx-auto flex items-center justify-between"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -35,7 +35,7 @@ const Navbar = () => {
             alt="Ampersand Logo"
             width={100}
             height={100}
-            className="w-16 h-auto"
+            className="w-9 lg:w-16 h-auto"
           />
         </Link>
       </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="flex flex-col rounded-[10px] items-center px-20 py-8 text-white hover:bg-[#000000]/40"
+                      className="flex flex-col rounded-[10px] items-center px-4 py-4 lg:px-20 lg:py-8 text-white hover:bg-[#000000]/40"
                       onClick={toggleMenu}
                     >
                       <div>
@@ -75,7 +75,7 @@ const Navbar = () => {
                           alt={`${item.label} Icon`}
                           width={100}
                           height={100}
-                          className="lg:w-18 h-auto mb-1"
+                          className="w-7 lg:w-18 h-auto mb-1"
                         />
                       </div>
                       <span>{item.label}</span>

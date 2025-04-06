@@ -5,7 +5,7 @@ import Insights from "@/components/insights";
 import NeuralPaths from "@/components/neural-paths";
 export default function Home() {
   return (
-    <div className="max-w-screen-2xl mx-auto flex flex-col items-center justify-center px-20">
+    <div className="max-w-screen-2xl mx-auto flex flex-col items-center justify-center px-4 lg:px-20">
       <HeroSection />
       <InvestorServices />
       <StartupSolutions />
