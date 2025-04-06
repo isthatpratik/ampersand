@@ -123,7 +123,7 @@ const StartupSolutions = () => {
 
   return (
     <motion.section 
-      className='py-15 mx-auto flex flex-col gap-6 min-h-[calc(100vh-192px)]'
+      className='py-15 mx-auto flex flex-col gap-6 min-h-[calc(80vh-192px)]'
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}
@@ -133,7 +133,7 @@ const StartupSolutions = () => {
         <h3 className='text-5xl font-semibold max-w-6xl mx-auto text-center bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent'>
           Strategic exits and growth solutions for founders
         </h3>
-        <p className='text-md text-center max-w-4xl mx-auto'>
+        <p className='text-md text-center max-w-4xl mx-auto text-[#9B9B9B]'>
           Maximize your returns with seamless exits and strategic liquidity solutions. We help investors unlock capital efficiently and optimize portfolio transitions. Stay ahead with precision-driven strategies designed for sustainable growth.
         </p>
       </div>

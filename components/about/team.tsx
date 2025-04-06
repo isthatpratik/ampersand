@@ -13,19 +13,99 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: 'Sarah',
+    name: 'Michael',
     image: '/about/02.png'
   },
   {
     id: 3,
-    name: 'Michael',
+    name: 'Reuben',
     image: '/about/03.png'
   },
   {
     id: 4,
     name: 'Sharon',
     image: '/about/04.png'
-  }
+  },
+  {
+    id: 5,
+    name: 'Sonal',
+    image: '/about/05.png'
+  },
+  {
+    id: 6,
+    name: 'Nikhil',
+    image: '/about/06.png'
+  },
+  {
+    id: 7,
+    name: 'Siddesh',
+    image: '/about/07.png'
+  },
+  {
+    id: 8,
+    name: 'Yogesh',
+    image: '/about/08.png'
+  },
+  {
+    id: 9,
+    name: 'Dinesh',
+    image: '/about/09.png'
+  },
+  {
+    id: 10,
+    name: 'Isha',
+    image: '/about/10.png'
+  },
+  {
+    id: 11,
+    name: 'Vishal',
+    image: '/about/11.png'
+  },
+  {
+    id: 12,
+    name: 'Aishwarya',
+    image: '/about/12.png'
+  },
+  {
+    id: 13,
+    name: 'Komal',
+    image: '/about/13.png'
+  },
+  {
+    id: 14,
+    name: 'Pratik',
+    image: '/about/14.png'
+  },
+  {
+    id: 15,
+    name: 'Clair',
+    image: '/about/15.png'
+  },
+  {
+    id: 16,
+    name: 'Sahil',
+    image: '/about/16.png'
+  },
+  {
+    id: 17,
+    name: 'Aaron',
+    image: '/about/17.png'
+  },
+  {
+    id: 18,
+    name: 'Michelle',
+    image: '/about/18.png'
+  },
+  {
+    id: 19,
+    name: 'Aman',
+    image: '/about/19.png'
+  },
+  {
+    id: 20,
+    name: 'Noeila',
+    image: '/about/20.png'
+  },
 ]
 
 const Team = () => {

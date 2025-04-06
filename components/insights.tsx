@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const Insights = () => {
   return (
-    <section className="py-15 mx-auto flex flex-col gap-6 min-h-[calc(100vh-192px)]">
+    <section className="py-15 mx-auto flex flex-col gap-6 min-h-[calc(80vh-192px)]">
       <motion.div 
         className="flex flex-col gap-6 items-center justify-center"
         initial="hidden"
@@ -26,23 +26,14 @@ const Insights = () => {
         }}
       >
         <motion.h3 
-          className="text-5xl font-semibold max-w-6xl mx-auto text-center"
+          className="text-5xl font-semibold max-w-2xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent "
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 }
           }}
         >
-          Insights that transform
+          Insights that transform pitches into opportunities
         </motion.h3>
-        <motion.h4 
-          className="text-5xl font-semibold max-w-6xl mx-auto text-center"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 }
-          }}
-        >
-          pitches into opportunities
-        </motion.h4>
         <motion.p 
           className="text-base text-center max-w-6xl mx-auto text-[#AFAFAF]"
           variants={{

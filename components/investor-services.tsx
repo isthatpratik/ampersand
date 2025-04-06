@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import Image from 'next/image'
 import styles from '@/styles/investor-cards.module.sass'
 import { cn } from '@/lib/utils'
@@ -86,6 +86,15 @@ const cardData = [
 
 const InvestorServices = () => {
   const [expandedCard, setExpandedCard] = useState(1)
+  const controls = useAnimation()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      controls.start("visible")
+    }, 1000) // 2 second delay after hero section
+
+    return () => clearTimeout(timer)
+  }, [controls])
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -95,16 +104,6 @@ const InvestorServices = () => {
       transition: {
         duration: 0.8,
         ease: "easeOut"
-      }
-    }
-  }
-
-  const cardContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
       }
     }
   }
@@ -123,26 +122,32 @@ const InvestorServices = () => {
 
   return (
     <motion.section 
-      className='py-15 mx-auto flex flex-col gap-6 min-h-[calc(100vh-192px)]'
+      className='py-15 mx-auto flex flex-col gap-6 '
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.8 }}
+      animate={controls}
       variants={sectionVariants}
     >
       <div className='flex flex-col gap-6 items-center justify-center'>
         <h3 className='text-5xl font-semibold max-w-6xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent'>
           Smart capital moves for investors who think ahead
         </h3>
-        <p className='text-md text-center max-w-4xl mx-auto'>
+        <p className='text-md text-center max-w-4xl mx-auto text-[#9B9B9B]'>
           Maximize your returns with seamless exits and strategic liquidity solutions. We help investors unlock capital efficiently and optimize portfolio transitions. Stay ahead with precision-driven strategies designed for sustainable growth.
         </p>
       </div>
       <motion.div 
         className={styles.cardsContainer}
-        variants={cardContainerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.6 }}
+        animate={controls}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}
       >
         <AnimatePresence>
           {cardData.map((card) => (
@@ -184,8 +189,7 @@ const InvestorServices = () => {
                   <div className={styles.listContainer}>
                     {card.content.map((item, index) => (
                       <div key={index} className={styles.listItem}>
-                        {item.title}
-                        <span>{item.description}</span>
+                        {item.title} – <span className="text-[#AFB6B4]">{item.description}</span>
                       </div>
                     ))}
                   </div>
