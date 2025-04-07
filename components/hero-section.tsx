@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 const HeroSection = () => {
   return (
-    <section className='min-h-[calc(80vh-192px)] flex flex-col space-y-5 lg:space-y-10 items-center justify-center'>
+    <section className='lg:min-h-[calc(80vh-192px)] flex flex-col space-y-5 lg:space-y-10 px-4 items-center justify-center'>
         <motion.div 
           className='flex flex-col gap-3 lg:gap-6 items-center justify-center'
           initial={{ opacity: 0, y: 20 }}
@@ -14,7 +14,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
             <motion.h1 
-              className='text-xl lg:text-7xl font-semibold max-w-5xl py-6 text-center tracking-tight drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)]'
+              className='text-xl lg:text-7xl md:text-5xl font-semibold max-w-5xl py-6 text-center tracking-tight drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)]'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}

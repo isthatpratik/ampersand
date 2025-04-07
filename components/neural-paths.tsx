@@ -75,7 +75,7 @@ const NeuralPaths = () => {
   }
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto px-6 py-24 min-h-[calc(100vh-192px)]">
+    <section className="w-full max-w-[1440px] mx-auto lg:px-6 py-12 lg:py-24 min-h-[calc(100vh-192px)]">
       {/* Top Section */}
       <motion.div 
         className="flex flex-col items-center gap-6 text-center mb-12"
@@ -94,14 +94,14 @@ const NeuralPaths = () => {
           </p>
         </motion.div>
         <motion.h2 
-          className="text-6xl font-semibold text-white"
+          className="text-xl lg:text-6xl font-semibold text-white"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
           from data to decisions, naturally.
         </motion.h2>
         <motion.p 
-          className="text-xl text-[#AFAFAF]"
+          className="text-base lg:text-xl text-[#AFAFAF]"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
@@ -111,7 +111,7 @@ const NeuralPaths = () => {
 
       {/* Main Grid Section */}
       <motion.div 
-        className="grid grid-cols-3 gap-5 items-center mb-32"
+        className="grid lg:grid-cols-3 gap-5 items-center mb-16 lg:mb-32 md:px-12 px-0 lg:px-0"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -128,17 +128,17 @@ const NeuralPaths = () => {
           {stats.map((stat, index) => (
             <motion.div 
               key={index} 
-              className="p-8 flex items-center justify-center flex-col gap-1 border-r border-b border-[#282828] even:border-r-0 [&:nth-last-child(-n+2)]:border-b-0"
+              className="p-4 lg:p-8 flex items-center justify-center flex-col gap-1 border-r border-b border-[#282828] even:border-r-0 [&:nth-last-child(-n+2)]:border-b-0"
               variants={fadeInUp}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <div className="text-2xl font-semibold text-white text-center drop-shadow-[0_0_21px_rgba(255,255,255,0.5)]">
+              <div className="text-sm lg:text-2xl font-semibold text-white text-center drop-shadow-[0_0_21px_rgba(255,255,255,0.5)]">
                 {stat.value}
               </div>
-              <div className="text-xs text-white font-semibold text-center tracking-wider text-nowrap">
+              <div className="text-[8px] lg:text-xs text-white font-semibold text-center tracking-wider text-nowrap">
                 {stat.label}
               </div>
-              <div className="text-xs text-[#798682] text-center">
+              <div className="text-[8px] lg:text-xs text-[#798682] text-center">
                 {stat.subtext}
               </div>
             </motion.div>
@@ -159,7 +159,7 @@ const NeuralPaths = () => {
               alt="Neural Paths"
               width={400}
               height={400}
-              className="w-full h-full object-contain drop-shadow-[0_0_48px_rgba(255,255,255,0.2)] p-12 -mt-16"
+              className="lg:w-full lg:h-full object-contain drop-shadow-[0_0_48px_rgba(255,255,255,0.2)] p-12 -mt-6 lg:-mt-16"
             />
             <motion.p 
               className="tracking-[0.2em] text-base -mt-22 text-[#F8F8F8]"
@@ -175,20 +175,20 @@ const NeuralPaths = () => {
 
         {/* Right Text */}
         <motion.div 
-          className="flex flex-col items-start justify-center"
+          className="flex flex-col items-start justify-center px-3 lg:mt-0 mt-6"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.h3 
-            className="text-[32px] font-semibold text-white mb-6"
+            className="text-xl lg:text-[32px] font-semibold text-white mb-3 lg:mb-6"
             variants={fadeInUp}
           >
             DataNeuron - AI Platform
           </motion.h3>
           <motion.p 
-            className="text-base text-[#798682] leading-normal max-w-sm text-balance"
+            className="text-xs lg:text-base text-[#798682] leading-normal lg:max-w-sm"
             variants={fadeInUp}
           >
             Our platform integrates with existing systems, transforming data into insights through neural networks and machine learning, empowering users with a code-free interface that democratizes access to analytics—without the overhead of specialized teams, enabling organizations to implement AI-driven decision-making quickly.
@@ -198,14 +198,14 @@ const NeuralPaths = () => {
 
       {/* Micro SaaS Suite Section */}
       <motion.div 
-        className="flex flex-col items-center gap-16 max-w-6xl mx-auto"
+        className="flex flex-col items-center gap-8 lg:gap-16 max-w-6xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
       >
         <motion.h2 
-          className="text-5xl font-semibold text-white text-center"
+          className="text-xl lg:text-5xl font-semibold text-white text-center"
           variants={fadeInUp}
         >
           Neural Paths&apos; - Micro SaaS Suite
@@ -213,7 +213,7 @@ const NeuralPaths = () => {
         
         {/* Products Grid */}
         <motion.div 
-          className="grid grid-cols-4 gap-6 w-full"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full"
           variants={staggerContainer}
         >
           {products.map((product, index) => (
@@ -224,7 +224,7 @@ const NeuralPaths = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <motion.div 
-                className="w-[160px] h-[160px] flex items-center justify-center"
+                className="w-[100px] h-[100px] lg:w-[160px] lg:h-[160px] flex items-center justify-center"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
@@ -236,10 +236,10 @@ const NeuralPaths = () => {
                   className="w-full h-full object-contain"
                 />
               </motion.div>
-              <h4 className="text-2xl font-semibold text-white">
+              <h4 className="text-sm lg:text-2xl font-semibold text-white">
                 {product.name}
               </h4>
-              <p className="text-[#798682]">
+              <p className="text-[#798682] lg:text-base text-sm text-center">
                 {product.description}
               </p>
             </motion.div>

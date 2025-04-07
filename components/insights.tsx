@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const Insights = () => {
   return (
-    <section className="py-15 mx-auto flex flex-col gap-6 min-h-[calc(80vh-192px)]">
+    <section className="py-7 lg:py-15 mx-auto flex flex-col gap-6 lg:min-h-[calc(80vh-192px)]">
       <motion.div 
         className="flex flex-col gap-6 items-center justify-center"
         initial="hidden"
@@ -26,7 +26,7 @@ const Insights = () => {
         }}
       >
         <motion.h3 
-          className="text-5xl font-semibold max-w-2xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent "
+          className="text-xl lg:text-5xl font-semibold max-w-2xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent "
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 }
@@ -35,7 +35,7 @@ const Insights = () => {
           Insights that transform pitches into opportunities
         </motion.h3>
         <motion.p 
-          className="text-base text-center max-w-6xl mx-auto text-[#AFAFAF]"
+          className="text-xs lg:text-base text-center max-w-6xl mx-auto text-[#AFAFAF]"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 }
@@ -47,18 +47,18 @@ const Insights = () => {
       </motion.div>
 
       <motion.div 
-        className="w-full max-w-6xl mx-auto mt-12"
+        className="w-full max-w-6xl mx-auto lg:mt-12 mt-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <div className="w-full bg-[#242424] rounded-[48px] overflow-hidden p-6">
+        <div className="w-full bg-[#242424] rounded-[48px] overflow-hidden p-3 lg:p-6">
           <div className={`w-full rounded-[32px] overflow-hidden bg-[url("/images/insights-bg.jpg")] bg-cover bg-center ${overlayStyles.overlay}`}>
-            <div className="flex flex-row items-stretch gap-8 relative">
+            <div className="flex flex-row gap-4 lg:gap-8 relative">
               {/* Left Section */}
               <motion.div 
-                className="flex flex-col gap-4 p-12"
+                className="flex flex-col gap-4 p-6 lg:p-12"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -76,20 +76,20 @@ const Insights = () => {
                     alt="Spider Logo"
                     width={200}
                     height={200}
-                    className="w-[71px] h-[73px]"
+                    className="w-[40px] h-[40px] lg:w-[71px] lg:h-[73px]"
                   />
                   <div className="flex flex-col">
-                    <h5 className="text-[32px] font-semibold text-white">
+                    <h5 className="text-lg lg:text-[32px] font-semibold text-white">
                       Spider
                     </h5>
-                    <p className="text-xl font-medium text-[#35EEFC]">
+                    <p className="text-xs lg:text-xl font-medium text-[#35EEFC]">
                       AI Pitch Deck Analyzer
                     </p>
                   </div>
                 </motion.div>
 
                 <motion.p 
-                  className="text-lg text-[#F8F8F8] max-w-sm"
+                  className="text-xs lg:text-lg text-[#F8F8F8] max-w-sm"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}

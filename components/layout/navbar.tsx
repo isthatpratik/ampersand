@@ -35,7 +35,7 @@ const Navbar = () => {
             alt="Ampersand Logo"
             width={100}
             height={100}
-            className="w-9 lg:w-16 h-auto"
+            className="w-9 md:w-16 h-auto"
           />
         </Link>
       </div>
@@ -61,7 +61,7 @@ const Navbar = () => {
             />
             <div className={styles.dialog}>
               <div className={styles.menuItems}>
-                <div className="grid grid-cols-4 justify-between gap-4">
+                <div className="grid lg:grid-cols-4 justify-between gap-2 md:gap-4">
                   {menuItems.map((item) => (
                     <Link
                       key={item.label}
@@ -75,7 +75,7 @@ const Navbar = () => {
                           alt={`${item.label} Icon`}
                           width={100}
                           height={100}
-                          className="w-7 lg:w-18 h-auto mb-1"
+                          className="w-14 md:w-18 h-auto mb-1"
                         />
                       </div>
                       <span>{item.label}</span>

@@ -35,7 +35,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-[#000000]">
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-6 lg:py-12 py-6">
+      <div className="max-w-[1440px] mx-auto px-6 lg:py-12 py-6">
         <motion.div 
           className="flex flex-col lg:grid lg:grid-cols-2 justify-between items-start lg:items-center gap-12 lg:gap-0 mb-11"
           initial="initial"
@@ -62,7 +62,7 @@ const Footer = () => {
               />
             </motion.div>
             <motion.p 
-              className="text-[#AFAFAF] text-lg leading-relaxed max-w-[460px]"
+              className="text-[#AFAFAF] text-lg leading-relaxed lg:max-w-[460px]"
               variants={fadeInUp}
             >
               Ampersand helps well-funded startups scale smarter. Expert advice, strategic growth, and big results—right when it matters most.

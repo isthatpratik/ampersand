@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import Image from 'next/image'
 import styles from '@/styles/investor-cards.module.sass'
 import { cn } from '@/lib/utils'
+import MobileCarousel from './MobileCarousel'
 
 const cardData = [
   {
@@ -91,7 +92,7 @@ const InvestorServices = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       controls.start("visible")
-    }, 1000) // 2 second delay after hero section
+    }, 1000)
 
     return () => clearTimeout(timer)
   }, [controls])
@@ -122,19 +123,21 @@ const InvestorServices = () => {
 
   return (
     <motion.section 
-      className='py-15 mx-auto flex flex-col gap-6 '
+      className='py-15 mx-auto flex flex-col gap-6'
       initial="hidden"
       animate={controls}
       variants={sectionVariants}
     >
-      <div className='flex flex-col gap-6 items-center justify-center'>
-        <h3 className='text-5xl font-semibold max-w-6xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent'>
+      <div className='flex flex-col gap-3 lg:gap-6 items-center justify-center'>
+        <h3 className='text-xl md:text-3xl lg:text-5xl font-semibold max-w-6xl mx-auto text-center bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent'>
           Smart capital moves for investors who think ahead
         </h3>
-        <p className='text-md text-center max-w-4xl mx-auto text-[#9B9B9B]'>
+        <p className='text-xs md:text-sm lg:text-md text-center max-w-4xl mx-auto text-[#9B9B9B]'>
           Maximize your returns with seamless exits and strategic liquidity solutions. We help investors unlock capital efficiently and optimize portfolio transitions. Stay ahead with precision-driven strategies designed for sustainable growth.
         </p>
       </div>
+
+      {/* Desktop Cards */}
       <motion.div 
         className={styles.cardsContainer}
         initial="hidden"
@@ -199,6 +202,9 @@ const InvestorServices = () => {
           ))}
         </AnimatePresence>
       </motion.div>
+
+      {/* Mobile Carousel */}
+      <MobileCarousel cardData={cardData} />
     </motion.section>
   )
 }
