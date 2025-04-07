@@ -283,3 +283,63 @@
     @extend .input
     width: 100%
     min-width: 0 
+.fileUpload
+    position: relative
+    width: 100%
+    min-height: 160px
+    background: #33333340
+    border-radius: 12px
+    display: flex
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    &:before
+        content: ''
+        position: absolute
+        inset: 0
+        border-radius: 12px
+        padding: 1px
+        background: linear-gradient(to bottom right, #FFFFFF40, #FFFFFF00, #FFFFFF00, #FFFFFF80)
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+        -webkit-mask-composite: xor
+        mask-composite: exclude
+        pointer-events: none
+    &.error:before
+        background: linear-gradient(to bottom right, rgba(255,59,48,0.4), rgba(255,59,48,0), rgba(255,59,48,0), rgba(255,59,48,0.8))
+    &:hover
+        background: #33333350
+
+.fileInput
+    position: absolute
+    inset: 0
+    opacity: 0
+    cursor: pointer
+    z-index: 2
+
+.fileUploadContent
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 16px
+    padding: 32px
+    text-align: center
+
+.fileIcon
+    width: 48px
+    height: 48px
+    background: rgba(248, 248, 248, 0.1)
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+
+.fileText
+    display: flex
+    flex-direction: column
+    gap: 8px
+    color: rgba(255,255,255,0.9)
+    font-size: 16px
+
+.fileSubtext
+    color: rgba(255,255,255,0.4)
+    font-size: 12px 
