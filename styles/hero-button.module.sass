@@ -12,6 +12,14 @@
     overflow: hidden
     border: none
     outline: none
+    width: 100%
+    display: block
+    text-align: center
+    @media (min-width: 640px)
+        width: auto
+    @media (max-width: 640px)
+        font-size: 10px
+        padding: 12px 24px
     &:before
         content: ''
         position: absolute

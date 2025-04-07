@@ -3,11 +3,18 @@
     max-width: 1440px
     margin: 0 auto
     padding: 120px 48px
+    @media (max-width: 768px)
+        padding: 60px 24px
 
 .teamGrid
     display: grid
     grid-template-columns: repeat(4, 1fr)
     gap: 38px
+    @media (max-width: 426px)
+        grid-template-columns: repeat(2, 1fr)
+        gap: 24px
+        .teamCard
+            max-height: 192px
 
 .teamCard
     background: rgba(248, 248, 248, 0.02)
@@ -19,6 +26,8 @@
     cursor: pointer
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
     box-shadow: 0 5px 1.5px -4px rgba(5, 5, 5, 0.25), 0 6px 4px -4px rgba(5, 5, 5, 0.1), 0 6px 13px 0 rgba(5, 5, 5, 0.1), 0 24px 24px -16px rgba(5, 5, 5, 0.09), inset 2px 4px 16px 0 rgba(248, 248, 248, 0.06)
+    @media (max-width: 768px)
+        min-height: 170px
     &:before
         content: ''
         position: absolute
@@ -56,6 +65,8 @@
         border-radius: 16px
         position: relative
         z-index: 2
+        @media (max-width: 768px)
+            object-fit: contain
 
 .radialMask
     position: absolute
@@ -77,12 +88,14 @@
     opacity: 0
     transition: all 0.3s ease
     z-index: 1
+    @media (max-width: 768px)
+        bottom: 24px
 
 .memberName
     position: absolute
     left: 0
     right: 0
-    top: 12px
+    top: 8px
     text-align: center
     transform: translateY(-100%)
     opacity: 0
@@ -92,3 +105,6 @@
     font-weight: 500
     color: #3D3D3D
     text-shadow: none
+    @media (max-width: 768px)
+        font-size: 24px
+        top: 4px

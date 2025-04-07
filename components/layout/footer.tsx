@@ -9,8 +9,8 @@ const Footer = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
-    { name: 'Contact Us', href: '/contact' },
     { name: 'Career', href: '/career' },
+    { name: 'Contact Us', href: '/contact' },
   ]
 
   const fadeInUp = {
@@ -35,9 +35,9 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-[#000000]">
-      <div className="max-w-[1440px] mx-auto px-6 py-12">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-6 lg:py-12 py-6">
         <motion.div 
-          className="grid grid-cols-2 justify-between items-center mb-11"
+          className="flex flex-col lg:grid lg:grid-cols-2 justify-between items-start lg:items-center gap-12 lg:gap-0 mb-11"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
@@ -45,7 +45,7 @@ const Footer = () => {
         >
           {/* Left Section - Logo and Description */}
           <motion.div 
-            className="border-[#353535] border-r pr-3"
+            className="w-full lg:border-r lg:border-[#353535] lg:pr-3"
             variants={fadeInUp}
           >
             <motion.div
@@ -56,13 +56,13 @@ const Footer = () => {
               <Image
                 src="/icons/header-logo.svg"
                 alt="Ampersand Logo"
-                width={64}
-                height={48}
-                className="mb-6"
+                width={100}
+                height={100}
+                className="mb-6 lg:w-[64px] lg:h-[48px] w-[62px] h-[34px]"
               />
             </motion.div>
             <motion.p 
-              className="text-[#AFAFAF] text-lg leading-relaxed"
+              className="text-[#AFAFAF] text-lg leading-relaxed max-w-[460px]"
               variants={fadeInUp}
             >
               Ampersand helps well-funded startups scale smarter. Expert advice, strategic growth, and big results—right when it matters most.
@@ -71,7 +71,7 @@ const Footer = () => {
 
           {/* Right Section - Navigation */}
           <motion.div 
-            className="flex gap-16 h-full items-center justify-end"
+            className="grid grid-cols-2 gap-y-8 w-full lg:flex lg:gap-16 lg:h-full lg:items-center lg:justify-end"
             variants={staggerChildren}
           >
             {navLinks.map((link, index) => (
@@ -85,7 +85,7 @@ const Footer = () => {
               >
                 <Link
                   href={link.href}
-                  className="text-white hover:text-[#35EEFC] transition-colors text-2xl font-semibold"
+                  className="text-white hover:text-[#35EEFC] transition-colors text-xl lg:text-2xl font-semibold"
                 >
                   {link.name}
                 </Link>
@@ -96,7 +96,7 @@ const Footer = () => {
 
         {/* Bottom Section - Terms and Copyright */}
         <motion.div 
-          className="flex justify-between items-center"
+          className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 pt-6 border-t border-[#353535]"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
@@ -115,7 +115,7 @@ const Footer = () => {
             </Link>
           </motion.div>
           <motion.div 
-            className="flex items-center gap-2 text-[#AFAFAF]"
+            className="flex flex-shrink-0 text-nowrap items-center gap-2 text-[#AFAFAF] text-sm lg:text-base"
             variants={fadeIn}
           >
             <span>Copyright 2025. All rights reserved.</span>
