@@ -93,6 +93,7 @@ const Contact = () => {
   const [selectedService, setSelectedService] = useState('')
   const [selectedReferral, setSelectedReferral] = useState('')
   const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   
   const dropdownRef = useRef<HTMLDivElement>(null)
   const industryDropdownRef = useRef<HTMLDivElement>(null)
@@ -151,10 +152,14 @@ const Contact = () => {
     trigger,
     setValue,
     reset,
-    clearErrors
+    clearErrors,
+    getValues,
+    setError
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     mode: 'onBlur',
+    criteriaMode: 'firstError',
+    reValidateMode: 'onBlur',
     defaultValues: {
       step1: {
         fullName: '',
@@ -232,22 +237,45 @@ const Contact = () => {
   }, [])
 
   const onSubmit = async (data: FormData) => {
-    const isValid = await trigger([
-      'step3.services' as keyof FormData,
-      'step3.referralSource' as keyof FormData,
-      'step3.message' as keyof FormData
-    ])
-    if (isValid) {
-      console.log(data)
-      setShowSuccessModal(true)
-      // Reset form and state
-      reset()
-      setCurrentStep(1)
-      setSelectedCountry(null)
-      setSelectedIndustry('')
-      setSelectedRole('')
-      setSelectedService('')
-      setSelectedReferral('')
+    if (currentStep < 3) {
+      // Handle navigation between steps
+      handleNext();
+      return;
+    }
+    
+    // Only for the final submission
+    try {
+      setIsSubmitting(true);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Show success modal
+        setShowSuccessModal(true);
+        
+        // Reset form and state
+        reset();
+        setCurrentStep(1);
+        setSelectedCountry(null);
+        setSelectedIndustry('');
+        setSelectedRole('');
+        setSelectedService('');
+        setSelectedReferral('');
+      } else {
+        // Handle error
+        console.error('Form submission failed');
+        alert('Failed to submit the form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred while submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -492,7 +520,7 @@ const Contact = () => {
               <label className={styles.label}>What Services are you interested in?</label>
               <div className={styles.inputWrapper} ref={servicesDropdownRef}>
                 <div 
-                  className={`${styles.select} ${errors.step3?.services ? styles.error : ''}`}
+                  className={`${styles.select} ${touchedFields.step3?.services && errors.step3?.services ? styles.error : ''}`}
                   onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
                 >
                   {selectedService || 'Select Services'}
@@ -513,7 +541,7 @@ const Contact = () => {
                     </div>
                   </div>
                 )}
-                {errors.step3?.services && (
+                {touchedFields.step3?.services && errors.step3?.services && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step3.services)}
                   </span>
@@ -524,7 +552,7 @@ const Contact = () => {
               <label className={styles.label}>How did you hear about us?</label>
               <div className={styles.inputWrapper} ref={referralDropdownRef}>
                 <div 
-                  className={`${styles.select} ${errors.step3?.referralSource ? styles.error : ''}`}
+                  className={`${styles.select} ${touchedFields.step3?.referralSource && errors.step3?.referralSource ? styles.error : ''}`}
                   onClick={() => setIsReferralDropdownOpen(!isReferralDropdownOpen)}
                 >
                   {selectedReferral || 'Select'}
@@ -545,7 +573,7 @@ const Contact = () => {
                     </div>
                   </div>
                 )}
-                {errors.step3?.referralSource && (
+                {touchedFields.step3?.referralSource && errors.step3?.referralSource && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step3.referralSource)}
                   </span>
@@ -557,10 +585,10 @@ const Contact = () => {
               <div className={styles.inputWrapper}>
                 <textarea 
                   placeholder="Enter your message or question..."
-                  className={`${styles.textarea} ${errors.step3?.message ? styles.error : ''}`}
+                  className={`${styles.textarea} ${touchedFields.step3?.message && errors.step3?.message ? styles.error : ''}`}
                   {...registerWithClear('step3.message')}
                 />
-                {errors.step3?.message && (
+                {touchedFields.step3?.message && errors.step3?.message && (
                   <span className={styles.errorMessage}>
                     {getErrorMessage(errors.step3.message)}
                   </span>
@@ -577,17 +605,17 @@ const Contact = () => {
   return (
     <>
       <div className="lg:min-h-screen w-full lg:py-24 py-10 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col items-center">
-          <div className='flex flex-col items-center gap-6 lg:mb-12'>
-            <h1 className="text-xl md:text-6xl font-semibold text-white text-center mb-4 drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)]">
+        <div className="max-w-[1440px] mx-auto flex flex-col items-center">
+          <div className='flex flex-col items-center gap-6 lg:mb-12 animate-fade-in'>
+            <h1 className="text-xl md:text-6xl font-semibold text-white text-center mb-4 drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)] animate-slide-up">
               Get in Touch with Our Team for Assistance and Inquiries
             </h1>
-            <p className="text-[#9B9B9B] text-xs md:text-xl text-center max-w-4xl mb-16">
+            <p className="text-[#9B9B9B] text-xs md:text-xl text-center max-w-4xl mb-16 animate-slide-up-delay-1">
               Have questions or need support? Our team is here to help with any inquiries, feedback, or assistance you may need. Reach out to us, and we&apos;ll get back to you as soon as possible.
             </p>
           </div>
 
-          <div className={styles.stepperContainer}>
+          <div className={`${styles.stepperContainer} animate-fade-in-delay-2`}>
             <div 
               className={`${styles.stepConnector} ${styles.first} ${
                 currentStep === 1 ? styles.active : styles.inactive
@@ -610,10 +638,12 @@ const Contact = () => {
             ))}
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col items-center gap-8">
-            {renderForm()}
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col items-center gap-8 animate-fade-in-delay-3">
+            <div className="w-full max-w-[696px] animate-slide-up-delay-3 z-50">
+              {renderForm()}
+            </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-delay-4">
               {currentStep > 1 && (
                 <button
                   type="button"
@@ -625,11 +655,24 @@ const Contact = () => {
                 </button>
               )}
               <button
-                type="submit"
+                type={currentStep === 3 ? "submit" : "button"}
                 onClick={currentStep === 3 ? undefined : handleNext}
                 className={buttonStyles.contactButton}
+                disabled={isSubmitting}
               >
-                {currentStep === 3 ? 'Submit' : 'Next'}
+                {currentStep === 3 ? 
+                  (isSubmitting ? 
+                    <>
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Submitting...
+                    </> 
+                    : 'Submit'
+                  ) 
+                  : 'Next'
+                }
                 {currentStep !== 3 && (
                   <ArrowRight className="ml-2" size={24} />
                 )}
@@ -640,8 +683,8 @@ const Contact = () => {
       </div>
 
       {showSuccessModal && (
-        <div className={modalStyles.modalOverlay}>
-          <div className={modalStyles.modalContent}>
+        <div className={`${modalStyles.modalOverlay} animate-fade-in`}>
+          <div className={`${modalStyles.modalContent} animate-scale-in`}>
             <button 
               className={modalStyles.closeButton}
               onClick={() => setShowSuccessModal(false)}

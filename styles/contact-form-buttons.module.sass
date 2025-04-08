@@ -1,32 +1,41 @@
 .contactButton
+    z-index: 0
     background: rgba(40, 40, 40, 0.7)
-    backdrop-filter: blur(100px)
-    border-radius: 12px
-    padding: 16px 32px
-    color: white
-    font-weight: 500
-    font-size: 18px
-    cursor: pointer
-    transition: all 0.3s ease
-    position: relative
-    overflow: hidden
-    border: none
-    outline: none
-    width: 100%
     display: flex
     align-items: center
     justify-content: center
-    gap: 8px
-    @media (min-width: 640px)
-        width: auto
+    backdrop-filter: blur(100px)
+    border-radius: 12px
+    padding: 16px 24px
+    color: #F8F8F8
+    font-size: 16px
+    font-weight: 500
+    position: relative
+    box-shadow: inset 2px 4px 16px 0 rgba(248, 248, 248, 0.06)
+    transition: all 0.3s ease
+    @media (max-width: 768px)
+        padding: 14px 20px
+        font-size: 14px
+        border-radius: 10px
     &:before
         content: ''
         position: absolute
         inset: 0
         border-radius: 12px
         padding: 1.5px
-        background: linear-gradient(-5deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.2) 100%)
+        opacity: 85
+        background: linear-gradient(170deg, #FFFFFF8A, #FFFFFF00, #FFFFFF00, #FFFFFF85)
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
         -webkit-mask-composite: xor
         mask-composite: exclude
         pointer-events: none
+        @media (max-width: 768px)
+            border-radius: 10px
+    &:hover:not(:disabled)
+        background: rgba(40, 40, 40, 0.8)
+    &:disabled
+        background: rgba(40, 40, 40, 0.4)
+        cursor: not-allowed
+        color: rgba(248, 248, 248, 0.6)
+        &:before
+            opacity: 30

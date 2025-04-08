@@ -9,7 +9,7 @@ const Footer = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
-    { name: 'Career', href: '/career' },
+    { name: 'Careers', href: '/careers' },
     { name: 'Contact Us', href: '/contact' },
   ]
 
@@ -119,7 +119,7 @@ const Footer = () => {
             variants={fadeIn}
           >
             <span>Copyright 2025. All rights reserved.</span>
-            <span>Neural Paths</span>
+            <span>Ampersand</span>
           </motion.div>
         </motion.div>
       </div>

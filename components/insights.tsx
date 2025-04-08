@@ -110,7 +110,7 @@ const Insights = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 1.2 }}
                 >
-                  Try Now
+                  Coming Soon!
                 </motion.button>
               </motion.div>
 

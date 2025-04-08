@@ -89,19 +89,19 @@
     position: absolute
     top: 36px
     height: 2px
-    z-index: 1
+    z-index: -10
     @media (max-width: 425px)
-        top: 11px
+        top: 10px
         height: 1px
     &.first
-        left: 72px
+        left: 62px
         right: calc(50%)
         @media (max-width: 425px)
             left: 24px
             right: calc(50%)
     &.second
         left: calc(50%)
-        right: 72px
+        right: 42px
         @media (max-width: 425px)
             left: calc(50%)
             right: 24px
@@ -240,7 +240,7 @@
     width: fit-content
     min-width: 100%
     max-height: 300px
-    z-index: 10
+    z-index: 999
     margin-top: 4px
     &:before
         content: ''
@@ -248,6 +248,7 @@
         inset: 0
         border-radius: 12px
         padding: 1px
+        z-index: 50
         background: linear-gradient(135deg, #FFFFFF9E 0%, #FFFFFF00 45%, #FFFFFF00 75%, #FFFFFF38 100%)
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
         -webkit-mask-composite: xor
@@ -257,10 +258,11 @@
 .countryCodeDropdownContent
     max-height: 300px
     overflow-y: auto
-    background: #F8F8F81A
+    background: #1A1A1A
     border-radius: 12px
     backdrop-filter: blur(10px)
-    box-shadow: 0 1.5px 50px 0 #00000066
+    z-index: 999
+    box-shadow: 0 15px 50px 0 #00000066
     &::-webkit-scrollbar
         width: 8px
         background-color: transparent
@@ -284,30 +286,25 @@
     width: 100%
     min-width: 0 
 .fileUpload
-    position: relative
     width: 100%
-    min-height: 160px
-    background: #33333340
+    position: relative
     border-radius: 12px
-    display: flex
-    align-items: center
-    justify-content: center
-    cursor: pointer
+    background: #33333340
+    backdrop-filter: blur(10px)
+    border: 2px dashed rgba(255, 255, 255, 0.2)
+    @media (max-width: 768px)
+        border-radius: 10px
     &:before
         content: ''
         position: absolute
         inset: 0
         border-radius: 12px
         padding: 1px
-        background: linear-gradient(to bottom right, #FFFFFF40, #FFFFFF00, #FFFFFF00, #FFFFFF80)
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
-        -webkit-mask-composite: xor
-        mask-composite: exclude
         pointer-events: none
+        @media (max-width: 768px)
+            border-radius: 10px
     &.error:before
         background: linear-gradient(to bottom right, rgba(255,59,48,0.4), rgba(255,59,48,0), rgba(255,59,48,0), rgba(255,59,48,0.8))
-    &:hover
-        background: #33333350
 
 .fileInput
     position: absolute
@@ -320,15 +317,13 @@
     display: flex
     flex-direction: column
     align-items: center
-    gap: 16px
-    padding: 32px
+    gap: 20px
+    padding: 64px
     text-align: center
 
 .fileIcon
-    width: 48px
-    height: 48px
-    background: rgba(248, 248, 248, 0.1)
-    border-radius: 50%
+    width: 74px
+    height: 74px
     display: flex
     align-items: center
     justify-content: center
