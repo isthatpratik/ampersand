@@ -98,7 +98,7 @@ const NeuralPaths = () => {
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          from data to decisions, naturally.
+          From data to decisions, naturally.
         </motion.h2>
         <motion.p 
           className="text-base lg:text-xl text-[#AFAFAF]"
@@ -254,13 +254,6 @@ const NeuralPaths = () => {
           whileTap={{ scale: 0.98 }}
         >
           Visit neuralpaths.ai
-          <Image
-            src="/icons/neural-paths.svg"
-            alt="Neural Icon"
-            width={42}
-            height={42}
-            className="inline-block ml-3"
-          />
         </motion.button>
       </motion.div>
     </section>

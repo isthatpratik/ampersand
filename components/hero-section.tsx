@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 const HeroSection = () => {
   return (
-    <section className='lg:min-h-[calc(80vh-192px)] flex flex-col space-y-5 lg:space-y-10 px-4 items-center justify-center'>
+    <section className='lg:min-h-[calc(60vh-192px)] flex flex-col space-y-5 lg:space-y-10 px-4 items-center justify-center'>
         <motion.div 
           className='flex flex-col gap-3 lg:gap-6 items-center justify-center'
           initial={{ opacity: 0, y: 20 }}
