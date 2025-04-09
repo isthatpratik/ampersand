@@ -1,17 +1,15 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import styles from "./StarField.module.sass";
 
-type StarFieldProps = {};
+const StarField = () => {
+    const sizes = useMemo(() => [3, 3, 2, 2, 2, 1, 1, 1, 1, 1], []);
 
-const StarField = ({}: StarFieldProps) => {
-    const sizes = [3, 3, 2, 2, 2, 1, 1, 1, 1, 1];
-
-    const randomPosition = (min: number, max: number) => {
+    const randomPosition = useCallback((min: number, max: number) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
+    }, []);
 
     const [stars, setStars] = useState<React.ReactElement[]>([]);
 
@@ -50,7 +48,7 @@ const StarField = ({}: StarFieldProps) => {
             );
         }
         setStars(newStars);
-    }, []);
+    }, [randomPosition, sizes]);
 
     return <div className={styles.stars}>{stars}</div>;
 };
