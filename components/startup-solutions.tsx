@@ -6,6 +6,8 @@ import Image from 'next/image'
 import styles from '@/styles/investor-cards.module.sass'
 import { cn } from '@/lib/utils'
 import MobileCarousel from './MobileCarousel'
+import ContactPopup from './ContactPopup'
+import buttonStyles from '@/styles/contact-form-buttons.module.sass'
 
 const cardData = [
   {
@@ -87,6 +89,8 @@ const cardData = [
 
 const StartupSolutions = () => {
   const [expandedCard, setExpandedCard] = useState(1)
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState('')
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -122,8 +126,14 @@ const StartupSolutions = () => {
     }
   }
 
+  const handleContactClick = (service: string) => {
+    setSelectedService(service)
+    setIsPopupOpen(true)
+  }
+
   return (
     <motion.section 
+      id="startup-services"
       className='py-6 lg:py-15 mx-auto flex flex-col gap-6 lg:min-h-[calc(80vh-192px)]'
       initial="hidden"
       whileInView="visible"
@@ -187,11 +197,20 @@ const StartupSolutions = () => {
                   <div className={styles.listContainer}>
                     {card.content.map((item, index) => (
                       <div key={index} className={styles.listItem}>
-                        {item.title}
-                        <span>{item.description}</span>
+                        {item.title} – <span className="text-[#AFB6B4]">{item.description}</span>
                       </div>
                     ))}
                   </div>
+                  
+                  <button 
+                    className={`${buttonStyles.contactButton} mt-6 w-fit`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleContactClick(card.title);
+                    }}
+                  >
+                    Get Started
+                  </button>
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -200,7 +219,18 @@ const StartupSolutions = () => {
       </motion.div>
 
       {/* Mobile Carousel */}
-      <MobileCarousel cardData={cardData} />
+      <MobileCarousel 
+        cardData={cardData.map(card => ({
+          ...card,
+          onContactClick: () => handleContactClick(card.title)
+        }))} 
+      />
+
+      <ContactPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+        service={selectedService}
+      />
     </motion.section>
   )
 }

@@ -3,6 +3,8 @@
 import React from 'react'
 import Link from 'next/link'
 import styles from '@/styles/careers.module.sass'
+import { motion } from 'framer-motion'
+import cardStyles from '@/styles/about-card.module.sass'
 
 interface Job {
   id: string
@@ -61,14 +63,14 @@ const jobListings = [
     skills: ['JavaScript', 'React', 'Node.js', 'Database Management']
   },
   {
-    id: 'growth-marketer',
-    title: 'Growth Marketer – Investor & Startup Outreach',
-    description: 'Develop marketing strategies to attract startups and investors while managing digital marketing, events, and branding.',
-    experience: '1 yr',
+    id: 'creative-designer',
+    title: 'Creative Designer (Graphic & UI/UX)',
+    description: 'Design engaging visuals and user interfaces for both digital and print. Collaborate across teams to maintain a consistent brand experience.',
+    experience: '6 months',
     location: 'In-Office',
     employmentType: 'Full-time',
-    education: 'Marketing, Business, or a related field',
-    skills: ['Digital Marketing', 'Content Strategy', 'Event Management', 'Branding']
+    education: 'Bachelor of Design',
+    skills: ['Figma', 'Illustrator', 'Photoshop', 'After Effects']
   },
   {
     id: 'ai-research-intern',
@@ -81,7 +83,6 @@ const jobListings = [
     skills: ['Machine Learning', 'Data Analysis', 'Research Methodology']
   }
 ]
-
 
 const JobCard = ({ job }: JobCardProps) => {
   return (
@@ -145,10 +146,31 @@ const CareersPage = () => {
         </div>
 
         <div className={styles.jobGrid}>
-          {jobListings.map((job, index) => (
+          {jobListings.map((job) => (
             <JobCard key={job.id} job={job} />
           ))}
         </div>
+
+        <motion.div 
+          className={cardStyles.outerCard}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+        >
+          <motion.div 
+            className={cardStyles.innerCard}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+          >
+            <h2 className='text-sm lg:text-5xl font-semibold text-center text-white mb-6'>
+              Innovation, Collaboration, and Purpose-Driven Impact
+            </h2>
+            <p className='text-xs lg:text-lg text-[#F8F8F8]/70 text-center max-w-5xl mx-auto'>
+              We thrive for curiosity, creativity, and collaboration. Our culture is built on the foundation of innovation, where ideas turn into solutions that make a difference. We believe in ownership, transparency, and a shared vision for growth—both for our clients and ourselves. At Ampersand, every challenge is an opportunity, and every success is a collective win.
+            </p>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   )

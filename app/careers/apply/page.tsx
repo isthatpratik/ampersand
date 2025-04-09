@@ -5,7 +5,7 @@ import styles from '@/styles/contact-form.module.sass'
 import buttonStyles from '@/styles/contact-form-buttons.module.sass'
 import modalStyles from '@/styles/success-modal.module.sass'
 import { z } from 'zod'
-import { useForm, FieldError } from 'react-hook-form'
+import { useForm, FieldError, SubmitHandler} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
 
@@ -16,41 +16,37 @@ interface CountryCode {
   flag: string
 }
 
+type FormData = {
+  fullName: string
+  email: string
+  countryCode: string
+  phone: string
+  role: string
+  message: string
+  cv: File | null
+}
+
 const formSchema = z.object({
   fullName: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string()
-    .email('Please enter a valid email')
-    .refine((email) => {
-      // List of blocked domains (personal and temporary email providers)
-      const blockedDomains = [
-        'gmail.com',
-        'yahoo.com',
-        'hotmail.com',
-        'outlook.com',
-        'aol.com',
-        'icloud.com',
-        'proton.me',
-        'protonmail.com',
-        'temp-mail.org',
-        'tempmail.com',
-        'mailinator.com',
-        'guerrillamail.com',
-        'yopmail.com',
-        '10minutemail.com',
-        'disposablemail.com'
-      ]
-      
-      const domain = email.split('@')[1]?.toLowerCase()
-      return !blockedDomains.includes(domain)
-    }, 'Please use your company email address'),
+    .email('Please enter a valid email'),
   countryCode: z.string(),
   phone: z.string().regex(/^\d{10}$/, 'Please enter a valid 10-digit phone number'),
   role: z.string().min(1, 'Please select a role'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
-  cv: z.any().refine((file) => file?.length > 0, 'Please upload your CV')
+  cv: z.instanceof(File, { message: 'Please upload your CV' })
+    .nullable()
+    .refine((file) => {
+      if (!file) return false;
+      const validTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ];
+      return validTypes.includes(file.type);
+    }, 'Please upload a PDF, DOC, or DOCX file')
 })
 
-type FormData = z.infer<typeof formSchema>
 type FormFields = keyof FormData;
 
 const ApplyFormContent = () => {
@@ -65,17 +61,19 @@ const ApplyFormContent = () => {
   const roleDropdownRef = useRef<HTMLDivElement>(null)
   const countryDropdownRef = useRef<HTMLDivElement>(null)
 
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    mode: 'onBlur'
+  })
+
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
     setValue,
     clearErrors,
-    trigger
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    mode: 'onBlur'
-  })
+    setError
+  } = form
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -148,59 +146,89 @@ const ApplyFormContent = () => {
     onChange: () => handleInputChange(name)
   })
 
-  const onSubmit = async (data: FormData) => {
-    const isValid = await trigger();
-    if (isValid) {
-      try {
-        setIsSubmitting(true);
-        // Create FormData for file upload
-        const formData = new FormData();
-        formData.append('fullName', data.fullName);
-        formData.append('email', data.email);
-        formData.append('countryCode', data.countryCode);
-        formData.append('phone', data.phone);
-        formData.append('role', data.role);
-        formData.append('message', data.message);
-        
-        // Append the CV file
-        if (data.cv && data.cv[0]) {
-          formData.append('cv', data.cv[0]);
-        }
-
-        // Send data to API endpoint
-        const response = await fetch('/api/apply', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (response.ok) {
-          setShowSuccessModal(true);
-        } else {
-          console.error('Application submission failed');
-          alert('Failed to submit your application. Please try again.');
-        }
-      } catch (error) {
-        console.error('Error submitting application:', error);
-        alert('An error occurred while submitting your application. Please try again.');
-      } finally {
-        setIsSubmitting(false);
+  const onSubmit: SubmitHandler<FormData> = async (formData) => {
+    try {
+      setIsSubmitting(true);
+      const data = new FormData();
+      
+      // Add all form fields
+      data.append('fullName', formData.fullName);
+      data.append('email', formData.email);
+      data.append('countryCode', formData.countryCode);
+      data.append('phone', formData.phone);
+      data.append('role', formData.role);
+      data.append('message', formData.message);
+      
+      // Add CV file if it exists
+      if (formData.cv) {
+        data.append('cv', formData.cv);
       }
+
+      const response = await fetch('/api/apply', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit application');
+      }
+
+      if (result.success) {
+        setShowSuccessModal(true);
+        // Reset form after successful submission
+        form.reset();
+        setSelectedFile(null);
+        setValue('cv', null);
+      } else {
+        throw new Error(result.error || 'Application submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      alert(error instanceof Error ? error.message : 'Application submission failed');
+    } finally {
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0])
-      setValue('cv', e.target.files)
-      clearErrors('cv')
+    const file = e.target.files?.[0]
+    if (file) {
+      const validTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ]
+      if (validTypes.includes(file.type)) {
+        setSelectedFile(file)
+        setValue('cv', file, { shouldValidate: true })
+        clearErrors('cv')
+      } else {
+        setSelectedFile(null)
+        setValue('cv', null)
+        setError('cv', { 
+          type: 'manual', 
+          message: 'Please upload a PDF, DOC, or DOCX file' 
+        })
+      }
+    } else {
+      setSelectedFile(null)
+      setValue('cv', null)
+      setError('cv', { 
+        type: 'manual', 
+        message: 'Please upload your CV' 
+      })
     }
   }
 
   const roles = [
-    'Investment Analyst',
-    'Portfolio Manager',
-    'Research Associate',
-    'Operations Manager'
+    'Business Analyst',
+    'M&A Specialist (Mergers & Acquisitions)',
+    'AI/ML Engineer',
+    'Full Stack Developer',
+    'Creative Designer (Graphic & UI/UX',
+    'AI Research Intern'
   ]
 
   return (
@@ -345,14 +373,12 @@ const ApplyFormContent = () => {
 
             <div className={styles.formGroup}>
               <label className={styles.label}>Upload CV</label>
-              <div className={`${styles.fileUpload} ${touchedFields.cv && errors.cv ? styles.error : ''}`}>
+              <div className={`${styles.fileUpload} ${errors.cv ? styles.error : ''}`}>
                 <input
                   type="file"
                   accept=".pdf,.doc,.docx"
                   className={styles.fileInput}
-                  {...register('cv', {
-                    onChange: handleFileChange
-                  })}
+                  onChange={handleFileChange}
                 />
                 <div className={styles.fileUploadContent}>
                   <div className={styles.fileIcon}>
@@ -363,7 +389,7 @@ const ApplyFormContent = () => {
                     <span className={styles.fileSubtext}>PDF, DOC, DOCX up to 10MB</span>
                   </div>
                 </div>
-                {touchedFields.cv && errors.cv && (
+                {errors.cv && (
                   <span className={styles.errorMessage}>
                     {errors.cv.message as string}
                   </span>

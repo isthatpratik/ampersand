@@ -6,6 +6,8 @@ import Image from 'next/image'
 import styles from '@/styles/investor-cards.module.sass'
 import { cn } from '@/lib/utils'
 import MobileCarousel from './MobileCarousel'
+import ContactPopup from './ContactPopup'
+import buttonStyles from '@/styles/contact-form-buttons.module.sass'
 
 const cardData = [
   {
@@ -88,6 +90,8 @@ const cardData = [
 const InvestorServices = () => {
   const [expandedCard, setExpandedCard] = useState(1)
   const controls = useAnimation()
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState('')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -121,8 +125,14 @@ const InvestorServices = () => {
     }
   }
 
+  const handleContactClick = (service: string) => {
+    setSelectedService(service)
+    setIsPopupOpen(true)
+  }
+
   return (
     <motion.section 
+      id="investor-services"
       className='py-15 mx-auto flex flex-col gap-6'
       initial="hidden"
       animate={controls}
@@ -196,6 +206,16 @@ const InvestorServices = () => {
                       </div>
                     ))}
                   </div>
+                  
+                  <button 
+                    className={`${buttonStyles.contactButton} mt-6 w-fit`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleContactClick(card.title);
+                    }}
+                  >
+                    Get Started
+                  </button>
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -204,7 +224,18 @@ const InvestorServices = () => {
       </motion.div>
 
       {/* Mobile Carousel */}
-      <MobileCarousel cardData={cardData} />
+      <MobileCarousel 
+        cardData={cardData.map(card => ({
+          ...card,
+          onContactClick: () => handleContactClick(card.title)
+        }))} 
+      />
+
+      <ContactPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+        service={selectedService}
+      />
     </motion.section>
   )
 }

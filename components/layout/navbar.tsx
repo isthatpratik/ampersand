@@ -83,13 +83,19 @@ const Navbar = () => {
           subLabel: "",
           href: "/contact",
         },
+        {
+          icon: "/icons/responsible-ai.svg",
+          label: "Responsible AI",
+          subLabel: "",
+          href: "/responsible-ai",
+        },
       ],
     },
   };
 
   return (
-    <motion.div
-      className="max-w-screen-2xl px-8 lg:px-20 py-8 lg:py-15 mx-auto flex items-center justify-between"
+    <motion.div 
+      className="max-w-[1440px] px-8 lg:px-20 py-8 lg:py-15 mx-auto flex items-center justify-between"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -124,18 +130,18 @@ const Navbar = () => {
             <div className={styles.overlay} onClick={toggleMenu} />
             <div className={styles.dialog}>
               <div className={styles.menuItems}>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-4">
-                  {/* Startups Column */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {/* Investors Column */}
                   <div className="flex flex-col">
-                    <h2 className="text-white text-xl md:text-2xl font-semibold mb-6 ml-6">
-                      {menuStructure.startups.title}
+                    <h2 className="text-white text-xl md:text-2xl font-semibold mb-2 ml-6">
+                      {menuStructure.investors.title}
                     </h2>
                     <div className="flex flex-col gap-1">
-                      {menuStructure.startups.items.map((item) => (
+                      {menuStructure.investors.items.map((item) => (
                         <Link
                           key={item.label}
                           href={item.href}
-                          className="flex items-center gap-6 rounded-[10px] p-4 text-white hover:bg-[#1B1B1B]"
+                          className="flex items-center gap-4 rounded-[10px] p-4 text-white hover:bg-[#1B1B1B]"
                           onClick={toggleMenu}
                         >
                           <div className="flex-shrink-0 flex items-center justify-center">
@@ -159,17 +165,17 @@ const Navbar = () => {
                     </div>
                   </div>
 
-                  {/* Investors Column */}
+                  {/* Startups Column */}
                   <div className="flex flex-col">
-                    <h2 className="text-white text-xl md:text-2xl font-semibold mb-6 ml-6">
-                      {menuStructure.investors.title}
+                    <h2 className="text-white text-xl md:text-2xl font-semibold mb-2 ml-6">
+                      {menuStructure.startups.title}
                     </h2>
                     <div className="flex flex-col gap-1">
-                      {menuStructure.investors.items.map((item) => (
+                      {menuStructure.startups.items.map((item) => (
                         <Link
                           key={item.label}
                           href={item.href}
-                          className="flex items-center gap-6 rounded-[10px] p-4 text-white hover:bg-[#1B1B1B]"
+                          className="flex items-center gap-4 rounded-[10px] p-4 text-white hover:bg-[#1B1B1B]"
                           onClick={toggleMenu}
                         >
                           <div className="flex-shrink-0 flex items-center justify-center">
@@ -195,27 +201,27 @@ const Navbar = () => {
 
                   {/* Contact Us Column */}
                   <div className="flex flex-col">
-                    <h2 className="text-white text-xl md:text-2xl font-semibold mb-6 ml-6">
+                    <h2 className="text-white text-xl md:text-2xl font-semibold mb-2 ml-6">
                       {menuStructure.contact.title}
                     </h2>
                     <div className="flex flex-col gap-1">
                       {menuStructure.contact.items.map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          className="flex items-center gap-6 rounded-[10px] p-4 text-white hover:bg-[#1B1B1B]"
-                          onClick={toggleMenu}
-                        >
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                          className="flex items-center gap-4 rounded-[10px] p-4 text-white hover:bg-[#1B1B1B]"
+                      onClick={toggleMenu}
+                    >
                           <div className="flex-shrink-0 flex items-center justify-center">
-                            <Image
-                              src={item.icon}
-                              alt={`${item.label} Icon`}
-                              width={100}
-                              height={100}
+                        <Image
+                          src={item.icon}
+                          alt={`${item.label} Icon`}
+                          width={100}
+                          height={100}
                               priority
                               className="w-20 h-auto mt-5"
-                            />
-                          </div>
+                        />
+                      </div>
                           <div className="flex flex-col justify-center">
                             <span className="font-medium text-xl">{item.label}</span>
                             {item.subLabel && (
@@ -231,35 +237,42 @@ const Navbar = () => {
                 </div>
 
                 {/* Banner with Join the Waitlist button */}
-                <div className="mt-8 relative overflow-hidden rounded-[20px]">
-                  <Image
-                    src="/images/banner.png"
-                    alt="Banner Background"
-                    width={2000}
-                    height={300}
-                    className="w-full h-full object-cover absolute top-0 left-0"
-                  />
-                  <div className="relative p-8 flex flex-col md:flex-row items-center justify-between gap-8 z-10">
-                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                      <Image
-                        src="/icons/neural-paths-banner.svg"
-                        alt="Neural Paths Logo"
-                        width={200}
-                        height={50}
-                        className="w-48 h-auto"
-                      />
-                      <p className="text-white text-lg max-w-2xl">
-                        Neural Paths empowers businesses of all sizes with instant,
-                        engineer-free AI insights and specialized MicroSaaS tools that
-                        think, act, and evolve like your team.
-                      </p>
+                <div className={styles.banner}>
+                  <div className={styles.bannerInner}>
+                    <Image
+                      src="/images/banner.png"
+                      alt="Banner Background"
+                      width={2000}
+                      height={300}
+                      className="w-full h-full object-cover absolute top-0 left-0"
+                    />
+                    <div className={styles.bannerContent}>
+                      <div className={styles.bannerLeft}>
+                        <div className={styles.bannerLogoContainer}>
+                          <Image
+                            src="/icons/neural-paths-banner.svg"
+                            alt="Neural Paths Logo"
+                            width={100}
+                            height={100}
+                            className={styles.bannerLogo}
+                          />
+                          <span className={styles.bannerTitle}>NEURAL PATHS</span>
+                        </div>
+                        <p className={styles.bannerDescription}>
+                          Neural Paths empowers businesses of all sizes with instant,
+                          engineer-free AI insights and specialized MicroSaaS tools that
+                          think, act, and evolve like your team.
+                        </p>
+                      </div>
+                      <div className={styles.bannerButtonContainer}>
+                        <Link 
+                          href="/" 
+                          className={styles.waitlistButton}
+                        >
+                          Coming Soon
+                        </Link>
+                      </div>
                     </div>
-                    <Link 
-                      href="/waitlist" 
-                      className={styles.waitlistButton}
-                    >
-                      Join the Waitlist <span className="ml-2">→</span>
-                    </Link>
                   </div>
                 </div>
               </div>
