@@ -101,6 +101,7 @@ const Navbar = () => {
             alt="Ampersand Logo"
             width={100}
             height={100}
+            priority
             className="w-9 md:w-16 h-auto"
           />
         </Link>
@@ -212,8 +213,8 @@ const Navbar = () => {
                           alt={`${item.label} Icon`}
                           width={100}
                           height={100}
-                              priority
-                              className="w-20 h-auto mt-5"
+                          priority
+                          className="w-20 h-auto mt-5"
                         />
                       </div>
                           <div className="flex flex-col justify-center">
@@ -236,8 +237,9 @@ const Navbar = () => {
                     <Image
                       src="/images/banner.png"
                       alt="Banner Background"
-                      width={2000}
+                      width={1000}
                       height={300}
+                      priority
                       className="w-full h-full object-cover absolute top-0 left-0"
                     />
                     <div className={styles.bannerContent}>
@@ -248,6 +250,7 @@ const Navbar = () => {
                             alt="Neural Paths Logo"
                             width={100}
                             height={100}
+                            priority
                             className={styles.bannerLogo}
                           />
                           <span className={styles.bannerTitle}>NEURAL PATHS</span>
@@ -260,7 +263,7 @@ const Navbar = () => {
                       </div>
                       <div className={styles.bannerButtonContainer}>
                         <Link 
-                          href="/" 
+                          href="#" 
                           className={styles.waitlistButton}
                         >
                           Coming Soon

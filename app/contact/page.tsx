@@ -602,7 +602,7 @@ const Contact = () => {
 
   return (
     <>
-      <div className="lg:min-h-screen w-full lg:py-24 py-10 px-6">
+      <div className="w-full lg:py-24 py-10 px-6">
         <div className="max-w-[1440px] mx-auto flex flex-col items-center">
           <div className='flex flex-col items-center gap-6 lg:mb-12 animate-fade-in'>
             <h1 className="max-w-6xl text-xl md:text-6xl font-semibold text-white text-center mb-4 drop-shadow-[0_4px_60px_rgba(255,255,255,0.4)] animate-slide-up">

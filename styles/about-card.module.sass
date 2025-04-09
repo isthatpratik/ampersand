@@ -32,6 +32,8 @@
     position: relative
     width: 100%
     box-shadow: 0 5px 1.5px -4px rgba(5, 5, 5, 0.25), 0 6px 4px -4px rgba(5, 5, 5, 0.1), 0 6px 13px 0 rgba(5, 5, 5, 0.1), 0 24px 24px -16px rgba(5, 5, 5, 0.09), inset 2px 4px 16px 0 rgba(248, 248, 248, 0.06)
+    overflow: hidden
+    transition: all 0.3s ease
     @media (max-width: 768px)
         border-radius: 16px
         padding: 30px 16px
@@ -64,3 +66,48 @@
         z-index: -1
         @media (max-width: 768px)
             border-radius: 0 0 16px 16px
+    &:hover
+        transform: translateY(-5px)
+        box-shadow: 0 10px 25px -5px rgba(5, 5, 5, 0.3)
+        .topText
+            opacity: 1
+            transform: translateY(0)
+        .bottomText
+            opacity: 1
+            transform: translateY(0)
+
+.topText
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    padding: 24px
+    background: linear-gradient(to bottom, rgba(34, 34, 34, 0.95), rgba(34, 34, 34, 0))
+    color: white
+    opacity: 0
+    transform: translateY(-20px)
+    transition: all 0.3s ease
+    z-index: 2
+    text-align: center
+    border-radius: 32px 32px 0 0
+    @media (max-width: 768px)
+        padding: 16px
+        border-radius: 16px 16px 0 0
+
+.bottomText
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    padding: 24px
+    background: linear-gradient(to top, rgba(34, 34, 34, 0.95), rgba(34, 34, 34, 0))
+    color: white
+    opacity: 0
+    transform: translateY(20px)
+    transition: all 0.3s ease
+    z-index: 2
+    text-align: center
+    border-radius: 0 0 32px 32px
+    @media (max-width: 768px)
+        padding: 16px
+        border-radius: 0 0 16px 16px

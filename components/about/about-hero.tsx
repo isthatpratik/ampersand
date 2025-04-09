@@ -62,12 +62,26 @@ const AboutHero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
           >
+            <div className={cardStyles.topText}>
+              <h3 className="text-lg lg:text-2xl font-medium">Our Mission</h3>
+              <p className="text-sm lg:text-base text-[#F8F8F8B2] mt-2">
+                Empowering businesses to reach their full potential through strategic solutions
+              </p>
+            </div>
+            
             <h2 className='text-sm lg:text-5xl font-semibold text-center text-white mb-6'>
               Innovation, Collaboration, and Purpose-Driven Impact
             </h2>
             <p className='text-xs lg:text-lg text-[#F8F8F8]/70 text-center max-w-5xl mx-auto'>
               We thrive for curiosity, creativity, and collaboration. Our culture is built on the foundation of innovation, where ideas turn into solutions that make a difference. We believe in ownership, transparency, and a shared vision for growth—both for our clients and ourselves. At Ampersand, every challenge is an opportunity, and every success is a collective win.
             </p>
+            
+            <div className={cardStyles.bottomText}>
+              <h3 className="text-lg lg:text-2xl font-medium">Our Values</h3>
+              <p className="text-sm lg:text-base text-[#F8F8F8B2] mt-2">
+                Integrity • Excellence • Innovation • Collaboration • Client Success
+              </p>
+            </div>
           </motion.div>
         </motion.div>
     </section>

@@ -53,7 +53,7 @@ const teamMembers = [
   },
   {
     id: 10,
-    name: 'Isha',
+    name: 'Pranav',
     image: '/about/10.png'
   },
   {
