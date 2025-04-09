@@ -83,12 +83,6 @@ const Navbar = () => {
           subLabel: "",
           href: "/contact",
         },
-        {
-          icon: "/icons/responsible-ai.svg",
-          label: "Responsible AI",
-          subLabel: "",
-          href: "/responsible-ai",
-        },
       ],
     },
   };
