@@ -68,8 +68,10 @@ const MobileCarousel = ({ cardData }: MobileCarouselProps) => {
               />
             </div>
             <div className={styles.mobileCardInfo}>
-              <h4 className={styles.mobileCardTitle}>{card.title}</h4>
-              <p className={styles.mobileCardSubtitle}>{card.subtitle}</p>
+              <div className={styles.mobileTitleGroup}>
+                <h4 className={styles.mobileCardTitle}>{card.title}</h4>
+                <p className={styles.mobileCardSubtitle}>{card.subtitle}</p>
+              </div>
             </div>
           </div>
           
