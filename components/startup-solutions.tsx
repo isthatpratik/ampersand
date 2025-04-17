@@ -182,12 +182,14 @@ const StartupSolutions = () => {
                       height={300}
                     />
                   </motion.div>
-                  <motion.h4 layout="position" className={styles.cardTitle}>
-                    {card.title}
-                  </motion.h4>
-                  <motion.p layout="position" className={styles.cardSubtitle}>
-                    {card.subtitle}
-                  </motion.p>
+                  <motion.div layout="position" className={styles.cardTitleGroup}>
+                    <motion.h4 className={styles.cardTitle}>
+                      {card.title}
+                    </motion.h4>
+                    <motion.p className={styles.cardSubtitle}>
+                      {card.subtitle}
+                    </motion.p>
+                  </motion.div>
                 </motion.div>
                 <motion.div
                   className={styles.expandedContent}
