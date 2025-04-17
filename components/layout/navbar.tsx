@@ -263,10 +263,11 @@ const Navbar = () => {
                       </div>
                       <div className={styles.bannerButtonContainer}>
                         <Link 
-                          href="#" 
+                          href="https://neuralpaths.ai"
+                          target="_blank" 
                           className={styles.waitlistButton}
                         >
-                          Coming Soon
+                          Join the Waitlist
                         </Link>
                       </div>
                     </div>

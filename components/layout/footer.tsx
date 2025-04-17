@@ -98,10 +98,10 @@ const Footer = () => {
                 />
                 Neural Paths
               </h3>
-              <span className="text-white text-[12px] md:text-[14px]">Data Neuron</span><br />
-              <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Spider</Link><br />
+              <span className="text-white text-[12px] md:text-[14px]">Neural Nexus</span><br />
               <Link href="https://rovyk.com" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Rovyk</Link><br />
               <Link href="https://lawbit.ai" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Lawbit</Link><br />
+              <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Spider</Link><br />
               <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Kashew</Link>
             </div>
           </motion.div>
