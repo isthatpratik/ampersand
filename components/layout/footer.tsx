@@ -91,14 +91,14 @@ const Footer = () => {
               <h3 className="text-white flex-shrink-0 text-nowrap font-semibold mb-2 pb-2 border-b border-[#313534] flex items-center gap-2 text-[14px] md:text-[16px]">
                 <Image
                   src="/icons/neural-paths-banner.svg"
-                  alt="Neural ARC Logo"
+                  alt="NeuralArc Logo"
                   width={24}
                   height={24}
                   className="w-6 h-6"
                 />
-                Neural ARC
+                NeuralArc
               </h3>
-              <span className="text-white text-[12px] md:text-[14px]">Neural NOD</span><br />
+              <span className="text-white text-[12px] md:text-[14px]">NeuralNod</span><br />
               <Link href="https://rovyk.com" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Rovyk</Link><br />
               <Link href="https://lawbit.ai" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Lawbit</Link><br />
               <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Spider</Link><br />

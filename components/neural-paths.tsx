@@ -156,7 +156,7 @@ const NeuralPaths = () => {
           <div className="flex flex-col items-center gap-4">
             <Image
               src="/images/neural-paths.png"
-              alt="Neural ARC"
+              alt="NeuralArc"
               width={400}
               height={400}
               className="lg:w-full lg:h-full object-contain drop-shadow-[0_0_48px_rgba(255,255,255,0.2)] p-12 -mt-6 lg:-mt-16"
@@ -185,7 +185,7 @@ const NeuralPaths = () => {
             className="text-xl lg:text-[32px] font-semibold text-white mb-3 lg:mb-6"
             variants={fadeInUp}
           >
-            Neural NOD - AI Platform
+            NeuralNod - AI Platform
           </motion.h3>
           <motion.p 
             className="text-xs lg:text-base text-[#798682] leading-normal lg:max-w-sm"
@@ -208,7 +208,7 @@ const NeuralPaths = () => {
           className="text-xl lg:text-5xl font-semibold text-white text-center"
           variants={fadeInUp}
         >
-          Neural ARC - Micro SaaS Suite
+          NeuralArc - Micro SaaS Suite
         </motion.h2>
         
         {/* Products Grid */}
@@ -252,9 +252,9 @@ const NeuralPaths = () => {
           variants={fadeInUp}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={() => window.open('https://neuralpaths.ai', '_blank')}
+          onClick={() => window.open('https://neuralarc.ai', '_blank')}
         >
-          Visit neuralpaths.ai
+          Visit neuralarc.ai
         </motion.button>
       </motion.div>
     </section>
