@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://ampersand.ai/sitemap.xml
+Sitemap: https://ampvc.co/sitemap.xml
 
 # Disallow admin and API routes
 Disallow: /api/

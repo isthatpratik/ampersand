@@ -247,16 +247,16 @@ const Navbar = () => {
                         <div className={styles.bannerLogoContainer}>
                           <Image
                             src="/icons/neural-paths-banner.svg"
-                            alt="Neural Paths Logo"
+                            alt="Neural ARC Logo"
                             width={100}
                             height={100}
                             priority
                             className={styles.bannerLogo}
                           />
-                          <span className={styles.bannerTitle}>NEURAL PATHS</span>
+                          <span className={styles.bannerTitle}>NEURAL ARC</span>
                         </div>
                         <p className={styles.bannerDescription}>
-                          Neural Paths empowers businesses of all sizes with instant,
+                          Neural ARC empowers businesses of all sizes with instant,
                           engineer-free AI insights and specialized MicroSaaS tools that
                           think, act, and evolve like your team.
                         </p>
