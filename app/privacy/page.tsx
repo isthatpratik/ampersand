@@ -133,7 +133,7 @@ const PrivacyPolicy = () => {
                 <li className="mb-2">Withdraw consent (where applicable)</li>
               </ul>
               <p className="text-[#F8F8F8B2] mb-4">
-                To exercise any of these rights, please contact us at info@ampvc.co.
+                To exercise any of these rights, please contact us at hello@ampvc.co.
               </p>
             </div>
 
@@ -167,7 +167,7 @@ const PrivacyPolicy = () => {
               <p className="text-[#F8F8F8B2] mb-4">
                 If you have any questions or concerns about this Privacy Policy, please contact us at:
                 <br />
-                📧 info@ampvc.co
+                📧 hello@ampvc.co
               </p>
             </div>
           </div>

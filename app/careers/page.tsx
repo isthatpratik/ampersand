@@ -26,7 +26,7 @@ const jobListings = [
     id: 'business-analyst',
     title: 'Business Analyst',
     description: 'Conduct market research, analyze business models and financials, and assist in strategic decision-making for business growth.',
-    experience: '1 yr',
+    experience: '2 yr',
     location: 'In-Office',
     employmentType: 'Full-time',
     education: 'Business, Economics, or a related field',
@@ -36,7 +36,7 @@ const jobListings = [
     id: 'ma-specialist',
     title: 'M&A Specialist (Mergers & Acquisitions)',
     description: 'Identify and manage M&A opportunities while assisting in deal structuring and legal compliance.',
-    experience: '1 yr',
+    experience: '2 yr',
     location: 'In-Office',
     employmentType: 'Full-time',
     education: 'Business, Finance, or a related field',
@@ -54,13 +54,13 @@ const jobListings = [
   },
   {
     id: 'full-stack-developer',
-    title: 'Full Stack Developer (CRM & Website)',
-    description: 'Maintain and enhance the AI-powered CRM while optimizing website performance and functionality.',
+    title: 'Full Stack Developer',
+    description: 'Design and develop scalable web applications with modern technologies, focusing on responsive interfaces and secure back-end services.',
     experience: '1 yr',
     location: 'In-Office',
     employmentType: 'Full-time',
     education: 'Computer Science, Software Engineering, or a related field',
-    skills: ['JavaScript', 'React', 'Node.js', 'Database Management']
+    skills: ['JavaScript', 'React', 'Node.js', 'Database Management', 'AWS', 'Python', 'RestAPI']
   },
   {
     id: 'creative-designer',
@@ -177,10 +177,15 @@ const CareersPage = () => {
               We thrive for curiosity, creativity, and collaboration. Our culture is built on the foundation of innovation, where ideas turn into solutions that make a difference. We believe in ownership, transparency, and a shared vision for growth—both for our clients and ourselves. At Ampersand, every challenge is an opportunity, and every success is a collective win.
             </p>
             
-            <div className={cardStyles.bottomText}>
-              <h3 className="text-lg lg:text-2xl font-medium">Our Benefits</h3>
-              <p className="text-sm lg:text-base text-[#F8F8F8B2] mt-2">
-                Competitive Salary • Professional Development • Work-Life Balance • Health Benefits • Remote Work Options
+            <div className="mt-8 text-center">
+              <p className="text-sm lg:text-xl text-[#F8F8F8B2]">
+                Send your applications to{' '}
+                <a 
+                  href="mailto:careers@ampvc.co" 
+                  className="text-white hover:text-[#F8F8F8B2] transition-colors"
+                >
+                  careers@ampvc.co
+                </a>
               </p>
             </div>
           </motion.div>

@@ -139,7 +139,7 @@ const TermsOfUse = () => {
               <p className="text-[#F8F8F8B2] mb-4">
                 If you have any questions about these Terms of Use, please contact us at:
                 <br />
-                📧 info@ampvc.co
+                📧 i@ampvc.co
               </p>
             </div>
           </div>
