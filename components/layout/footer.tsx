@@ -101,7 +101,7 @@ const Footer = () => {
               <span className="text-white text-[12px] md:text-[14px]">NeuralNod</span><br />
               <Link href="https://rovyk.com" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Rovyk</Link><br />
               <Link href="https://lawbit.ai" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Lawbit</Link><br />
-              <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Spider</Link><br />
+              <Link href="https://spider.neuralarc.ai" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Spider</Link><br />
               <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Kashew</Link>
             </div>
           </motion.div>

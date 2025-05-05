@@ -75,7 +75,7 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'dev@ampvc.co',
+      to: 'careers@ampvc.co',
       subject: `New Job Application for ${role}`,
       html: `
         <h2>New Job Application</h2>

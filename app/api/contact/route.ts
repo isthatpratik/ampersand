@@ -61,8 +61,8 @@ export async function POST(req: Request) {
 
     // Send email
     const mailOptions = {
-      from: process.env.SMTP_FROM || 'noreply@ampvc.co',
-      to: 'dev@ampvc.co',
+      from: process.env.SMTP_FROM || 'dev@ampvc.co',
+      to: 'at@ampvc.co',
       subject: emailSubject,
       html: emailHtml,
       // For file attachments, you would add them here

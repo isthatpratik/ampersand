@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from '@/styles/hero-button.module.sass';
 import overlayStyles from '@/styles/insights-overlay.module.sass';
 import { motion } from 'framer-motion';
+import Link from "next/link";
 
 const Insights = () => {
   return (
@@ -101,6 +102,7 @@ const Insights = () => {
                   smarter, data-driven investment decisions—faster than ever.
                 </motion.p>
 
+                <Link href="https://spider.neuralarc.ai" target="_blank">
                 <motion.button 
                   className={`${styles.heroButton} w-fit z-999`}
                   whileHover={{ scale: 1.02 }}
@@ -110,8 +112,9 @@ const Insights = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 1.2 }}
                 >
-                  Coming Soon!
+                  Try Now
                 </motion.button>
+                </Link>
               </motion.div>
 
               {/* Right Section */}
