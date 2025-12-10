@@ -102,7 +102,7 @@ const Insights = () => {
                   smarter, data-driven investment decisions—faster than ever.
                 </motion.p>
 
-                <Link href="https://spider.neuralarc.ai" target="_blank">
+                <Link href="/contact">
                 <motion.button 
                   className={`${styles.heroButton} w-fit z-999`}
                   whileHover={{ scale: 1.02 }}
@@ -112,7 +112,7 @@ const Insights = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 1.2 }}
                 >
-                  Try Now
+                  Contact Us
                 </motion.button>
                 </Link>
               </motion.div>

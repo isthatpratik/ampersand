@@ -246,28 +246,27 @@ const Navbar = () => {
                       <div className={styles.bannerLeft}>
                         <div className={styles.bannerLogoContainer}>
                           <Image
-                            src="/icons/neural-paths-banner.svg"
-                            alt="NeuralArc Logo"
-                            width={100}
-                            height={100}
+                            src="/icons/helium-logo.svg"
+                            alt="Helium AI Logo"
+                            width={120}
+                            height={120}
                             priority
                             className={styles.bannerLogo}
-                          />
-                          <span className={styles.bannerTitle}>NEURAL ARC</span>
+                          />                          
                         </div>
                         <p className={styles.bannerDescription}>
-                          NeuralArc empowers businesses of all sizes with instant,
-                          engineer-free AI insights and specialized MicroSaaS tools that
-                          think, act, and evolve like your team.
+                          Helium is a True Deep Agent that orchestrates knowledge, 
+                          amplifies context, and delivers clarity across your entire workflow. 
+                          Experience the future of AI-powered productivity—join the revolution today.
                         </p>
                       </div>
                       <div className={styles.bannerButtonContainer}>
                         <Link 
-                          href="https://neuralpaths.ai"
+                          href="https://he2.ai"
                           target="_blank" 
                           className={styles.waitlistButton}
                         >
-                          Join the Waitlist
+                          Join the AI revolution
                         </Link>
                       </div>
                     </div>

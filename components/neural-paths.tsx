@@ -38,29 +38,6 @@ const NeuralPaths = () => {
     }
   ]
 
-  const products = [
-    {
-      name: 'LawBit',
-      description: 'AI for Legal Intelligence',
-      icon: '/icons/lawbit.png'
-    },
-    {
-      name: 'Rovyk',
-      description: 'AI Powerhouse',
-      icon: '/icons/rovyk.png'
-    },
-    {
-      name: 'Kashew',
-      description: 'AI for Invoicing',
-      icon: '/icons/kashew.png'
-    },
-    {
-      name: 'Spider',
-      description: 'AI Pitch Deck Analyzer',
-      icon: '/icons/spider.png'
-    }
-  ]
-
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -90,7 +67,7 @@ const NeuralPaths = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-white/80 text-base">
-            <span className='tracking-widest'>NEURAL ARC</span> an <span className='font-bold'>AI venture</span> by <span className='font-bold'>Ampersand</span>
+            <span className='tracking-widest'>NEURAL ARC INC.</span> an <span className='font-bold'>AI venture</span> by <span className='font-bold'>Ampersand</span>
           </p>
         </motion.div>
         <motion.h2 
@@ -194,69 +171,7 @@ const NeuralPaths = () => {
             Our platform integrates with existing systems, transforming data into insights through neural networks and machine learning, empowering users with a code-free interface that democratizes access to analytics—without the overhead of specialized teams, enabling organizations to implement AI-driven decision-making quickly.
           </motion.p>
         </motion.div>
-      </motion.div>
-
-      {/* Micro SaaS Suite Section */}
-      <motion.div 
-        className="flex flex-col items-center gap-8 lg:gap-16 max-w-6xl mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-      >
-        <motion.h2 
-          className="text-xl lg:text-5xl font-semibold text-white text-center"
-          variants={fadeInUp}
-        >
-          NeuralArc - Micro SaaS Suite
-        </motion.h2>
-        
-        {/* Products Grid */}
-        <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full"
-          variants={staggerContainer}
-        >
-          {products.map((product, index) => (
-            <motion.div 
-              key={index} 
-              className="flex flex-col items-center gap-4"
-              variants={fadeInUp}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <motion.div 
-                className="w-[100px] h-[100px] lg:w-[160px] lg:h-[160px] flex items-center justify-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Image
-                  src={product.icon}
-                  alt={product.name}
-                  width={120}
-                  height={120}
-                  className="w-full h-full object-contain"
-                />
-              </motion.div>
-              <h4 className="text-sm lg:text-2xl font-semibold text-white">
-                {product.name}
-              </h4>
-              <p className="text-[#798682] lg:text-base text-sm text-center">
-                {product.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Visit Button */}
-        <motion.button 
-          className={styles.visitButton}
-          variants={fadeInUp}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => window.open('https://neuralarc.ai', '_blank')}
-        >
-          Visit neuralarc.ai
-        </motion.button>
-      </motion.div>
+      </motion.div>      
     </section>
   )
 }

@@ -94,15 +94,11 @@ const Footer = () => {
                   alt="NeuralArc Logo"
                   width={24}
                   height={24}
-                  className="w-6 h-6"
-                />
-                NeuralArc
-              </h3>
-              <span className="text-white text-[12px] md:text-[14px]">NeuralNod</span><br />
-              <Link href="https://rovyk.com" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Rovyk</Link><br />
-              <Link href="https://lawbit.ai" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Lawbit</Link><br />
-              <Link href="https://spider.neuralarc.ai" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Spider</Link><br />
-              <Link href="/" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Kashew</Link>
+                  className="w-fit h-6"
+                />                
+              </h3>              
+              <Link href="https://he2.ai" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">Helium</Link><br />
+              <Link href="https://onlyprompts.in" target="_blank" className="text-[#DCE0DFA1] hover:text-white text-[12px] md:text-[14px]">OnlyPrompts</Link>
             </div>
           </motion.div>
         </motion.div>

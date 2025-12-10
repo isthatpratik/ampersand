@@ -167,7 +167,9 @@ const PrivacyPolicy = () => {
               <p className="text-[#F8F8F8B2] mb-4">
                 If you have any questions or concerns about this Privacy Policy, please contact us at:
                 <br />
-                📧 hello@ampvc.co
+                <a href="mailto:hello@ampvc.co" className="text-[#F8F8F8] hover:underline">
+                  hello@ampvc.co
+                </a>
               </p>
             </div>
           </div>

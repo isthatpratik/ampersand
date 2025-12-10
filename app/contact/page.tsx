@@ -135,7 +135,8 @@ const Contact = () => {
   const services = [
     'Exit Strategy',
     'Board Representation',
-    'Secondary Buyout'
+    'Secondary Buyout',
+    'Spider'
   ]
 
   const referralSources = [

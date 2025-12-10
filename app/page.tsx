@@ -2,7 +2,6 @@ import HeroSection from "@/components/hero-section";
 import InvestorServices from "@/components/investor-services";
 import StartupSolutions from "@/components/startup-solutions";
 import Insights from "@/components/insights";
-import NeuralPaths from "@/components/neural-paths";
 import StarField from "@/components/StarField";
 
 export default function Home() {
@@ -27,8 +26,7 @@ export default function Home() {
         <HeroSection />
         <InvestorServices />
         <StartupSolutions />
-        <Insights />
-        <NeuralPaths />
+        <Insights />        
       </div>
     </>
   );
